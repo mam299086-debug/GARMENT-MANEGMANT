@@ -1,0 +1,6666 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07111f">
+<meta name="description" content="Garment Manager Pro X">
+<title>Garment Manager Pro X</title>
+
+<style>
+:root{
+--bg:#f4f7fb;
+--card:#fff;
+--card2:#f8fafc;
+--text:#102033;
+--muted:#66758a;
+--line:#e2e8f0;
+
+--primary:#2563eb;
+--primary2:#4f46e5;
+--cyan:#06b6d4;
+--green:#16a34a;
+--greenBg:#ecfdf3;
+--greenBorder:#bbf7d0;
+--red:#dc2626;
+--redBg:#fff1f2;
+--redBorder:#fecdd3;
+--orange:#f59e0b;
+--purple:#7c3aed;
+--dark:#07111f;
+
+--shadow:0 12px 35px rgba(15,23,42,.08);
+--r:18px;
+}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+margin:0;
+background:var(--bg);
+color:var(--text);
+font-family:Inter,system-ui,-apple-system,"Segoe UI",
+"Noto Sans Ethiopic",Arial,sans-serif;
+-webkit-tap-highlight-color:transparent
+}
+
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;touch-action:manipulation}
+input,select,textarea{font-size:16px}
+button:active{transform:none!important}
+
+.app{min-height:100vh}
+
+.sidebar{
+width:265px;
+position:fixed;
+inset:0 auto 0 0;
+background:linear-gradient(180deg,#07111f,#0d1830);
+color:#fff;
+z-index:60;
+padding:18px 13px;
+overflow:auto;
+transition:transform .2s ease
+}
+
+.main{
+margin-left:265px;
+min-width:0
+}
+
+.logo{
+display:flex;
+gap:10px;
+align-items:center;
+padding:6px 8px 19px;
+border-bottom:1px solid rgba(255,255,255,.08)
+}
+
+.logoIcon{
+width:44px;
+height:44px;
+border-radius:14px;
+display:grid;
+place-items:center;
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+font-size:23px;
+box-shadow:0 10px 25px rgba(37,99,235,.3)
+}
+
+.logo h2{font-size:16px;margin:0}
+.logo small{
+color:#93a4bd;
+font-size:8px;
+letter-spacing:1px
+}
+
+.navTitle{
+font-size:9px;
+color:#71819a;
+letter-spacing:1.4px;
+font-weight:800;
+margin:18px 10px 7px
+}
+
+.nav{
+width:100%;
+border:0;
+background:transparent;
+color:#cbd5e1;
+text-align:left;
+padding:11px 12px;
+border-radius:11px;
+display:flex;
+gap:10px;
+align-items:center;
+margin:3px 0
+}
+
+.nav:hover{
+background:#17243a;
+color:#fff
+}
+
+.nav.active{
+background:linear-gradient(90deg,#2563eb,#4f46e5);
+color:#fff;
+box-shadow:0 8px 20px rgba(37,99,235,.25)
+}
+
+.nav i{
+width:22px;
+text-align:center;
+font-style:normal
+}
+
+.sideFoot{
+border-top:1px solid rgba(255,255,255,.08);
+margin-top:14px;
+padding-top:10px
+}
+
+.topbar{
+height:78px;
+position:sticky;
+top:0;
+z-index:40;
+background:rgba(255,255,255,.9);
+backdrop-filter:blur(14px);
+border-bottom:1px solid var(--line);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 26px
+}
+
+.topLeft{
+display:flex;
+align-items:center;
+gap:10px
+}
+
+.menu{
+display:none;
+width:40px;
+height:40px;
+border:0;
+border-radius:11px;
+background:var(--card2)
+}
+
+.title h1{
+margin:0;
+font-size:21px
+}
+
+.title p{
+margin:3px 0 0;
+color:var(--muted);
+font-size:10px
+}
+
+.topRight{
+display:flex;
+gap:8px;
+align-items:center
+}
+
+.avatar{
+width:37px;
+height:37px;
+border-radius:50%;
+background:#dbeafe;
+color:#1d4ed8;
+display:grid;
+place-items:center;
+font-weight:900
+}
+
+.owner strong{
+font-size:12px;
+display:block
+}
+
+.owner span{
+font-size:9px;
+color:var(--muted)
+}
+
+.content{
+padding:22px;
+max-width:1750px;
+margin:auto
+}
+
+.page{display:none}
+.page.active{display:block}
+
+.btn{
+border:0;
+border-radius:11px;
+padding:10px 14px;
+font-weight:800;
+font-size:12px;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:7px;
+transition:background .15s,box-shadow .15s
+}
+
+.btn:hover{
+box-shadow:0 7px 18px rgba(15,23,42,.12)
+}
+
+.primary{
+color:#fff;
+background:linear-gradient(135deg,var(--primary),var(--primary2))
+}
+
+.success{
+color:#fff;
+background:var(--green)
+}
+
+.danger{
+color:#fff;
+background:var(--red)
+}
+
+.light{
+background:#eef2f7;
+color:#334155
+}
+
+.warn{
+background:var(--orange);
+color:#fff
+}
+
+.small{
+padding:7px 10px;
+font-size:10px
+}
+
+.card{
+background:var(--card);
+border:1px solid var(--line);
+border-radius:var(--r);
+box-shadow:var(--shadow);
+padding:18px;
+margin-bottom:16px
+}
+
+.head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:12px;
+margin-bottom:15px
+}
+
+.head h3,.head h4{
+margin:0;
+font-size:14px
+}
+
+.head p{
+margin:4px 0 0;
+color:var(--muted);
+font-size:10px
+}
+
+/* HERO */
+
+.hero{
+position:relative;
+overflow:hidden;
+color:#fff;
+background:
+radial-gradient(circle at 85% 10%,rgba(34,211,238,.22),transparent 30%),
+linear-gradient(135deg,#07111f,#172554 60%,#312e81);
+border:0;
+padding:25px
+}
+
+.heroIn{
+position:relative;
+z-index:1;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:18px
+}
+
+.hero small{
+color:#67e8f9;
+font-weight:900;
+letter-spacing:1.4px
+}
+
+.hero h2{
+font-size:27px;
+margin:7px 0
+}
+
+.hero p{
+margin:0;
+color:#cbd5e1;
+font-size:11px
+}
+
+/* DASHBOARD STATS */
+
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:13px;
+margin:15px 0
+}
+
+.stat{
+padding:16px;
+border-radius:16px;
+background:var(--card);
+border:1px solid var(--line);
+box-shadow:var(--shadow)
+}
+
+.statTop{
+display:flex;
+justify-content:space-between;
+align-items:center
+}
+
+.statLabel{
+font-size:10px;
+color:var(--muted);
+font-weight:800
+}
+
+.statIcon{
+width:37px;
+height:37px;
+border-radius:11px;
+display:grid;
+place-items:center;
+background:#eef2ff
+}
+
+.statValue{
+font-size:23px;
+font-weight:900;
+margin-top:9px;
+letter-spacing:-.5px
+}
+
+.statSub{
+font-size:9px;
+color:var(--muted);
+margin-top:5px
+}
+
+.grid2{
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:15px
+}
+
+.grid3{
+display:grid;
+grid-template-columns:repeat(3,minmax(0,1fr));
+gap:13px
+}
+
+.kpis{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:10px
+}
+
+.mini{
+padding:12px;
+border-radius:13px;
+background:var(--card2);
+border:1px solid var(--line)
+}
+
+.mini span{
+font-size:9px;
+color:var(--muted);
+font-weight:800
+}
+
+.mini b{
+display:block;
+font-size:17px;
+margin-top:5px
+}
+
+.toolbar{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-bottom:13px
+}
+
+.search,.toolbar select{
+min-height:41px;
+border:1px solid var(--line);
+background:var(--card);
+border-radius:10px;
+padding:8px 11px;
+color:var(--text);
+outline:0
+}
+
+.search{
+flex:1;
+min-width:180px
+}
+
+.formGrid{
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:12px
+}
+
+.fg label{
+display:block;
+font-size:10px;
+font-weight:900;
+color:#475569;
+margin-bottom:5px
+}
+
+.fg input,.fg select,.fg textarea{
+width:100%;
+border:1px solid var(--line);
+border-radius:10px;
+padding:10px;
+background:var(--card);
+color:var(--text);
+outline:0
+}
+
+.fg textarea{
+min-height:85px;
+resize:vertical
+}
+
+.tableWrap{
+width:100%;
+overflow:auto;
+border:1px solid var(--line);
+border-radius:12px
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+min-width:800px
+}
+
+th,td{
+padding:10px 11px;
+border-bottom:1px solid var(--line);
+font-size:10px;
+text-align:left;
+white-space:nowrap
+}
+
+th{
+background:var(--card2);
+font-size:9px;
+color:#526176;
+text-transform:uppercase;
+letter-spacing:.3px
+}
+
+tbody tr:hover{
+background:#f8fafc
+}
+
+.num{text-align:right}
+
+.badge{
+display:inline-flex;
+padding:4px 8px;
+border-radius:999px;
+font-size:9px;
+font-weight:900
+}
+
+.ok{
+background:#dcfce7;
+color:#166534
+}
+
+.low{
+background:#fee2e2;
+color:#991b1b
+}
+
+.blue{
+background:#dbeafe;
+color:#1e40af
+}
+
+.orange{
+background:#ffedd5;
+color:#9a3412
+}
+
+.gray{
+background:#e2e8f0;
+color:#475569
+}
+
+.greenTxt{
+color:#15803d!important
+}
+
+.redTxt{
+color:#b91c1c!important
+}
+
+.action{
+display:flex;
+gap:5px
+}
+
+.iconBtn{
+width:36px;
+height:36px;
+border:1px solid var(--line);
+background:var(--card);
+border-radius:10px
+}
+
+.alert{
+padding:12px 14px;
+border-radius:13px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:12px;
+margin-bottom:14px
+}
+
+.alert.warnA{
+background:#fff7ed;
+border:1px solid #fed7aa;
+color:#9a3412
+}
+
+.alert.okA{
+background:#f0fdf4;
+border:1px solid #bbf7d0;
+color:#166534
+}
+
+.chips{
+display:flex;
+gap:6px;
+flex-wrap:wrap;
+margin-top:7px
+}
+
+.chip{
+padding:5px 8px;
+border-radius:999px;
+background:#fff;
+border:1px solid #fdba74;
+font-size:9px;
+font-weight:800
+}
+
+.chartBox{
+height:285px;
+position:relative
+}
+
+.chartBox canvas{
+width:100%;
+height:100%
+}
+
+/* PROFIT / LOSS */
+
+.profit{
+padding:18px;
+border-radius:15px;
+background:var(--greenBg);
+border:1px solid var(--greenBorder)
+}
+
+.profit.loss{
+background:var(--redBg);
+border-color:var(--redBorder)
+}
+
+.profitNum{
+font-size:27px;
+font-weight:950;
+margin-top:5px
+}
+
+.progress{
+height:8px;
+background:#e2e8f0;
+border-radius:99px;
+overflow:hidden
+}
+
+.progress>div{
+height:100%;
+border-radius:99px
+}
+
+/* REPORT DASHBOARD */
+
+.reportHero{
+border-radius:20px;
+padding:22px;
+color:#fff;
+background:
+radial-gradient(circle at 90% 10%,rgba(34,211,238,.2),transparent 30%),
+linear-gradient(135deg,#07111f,#172554 60%,#312e81);
+margin-bottom:16px
+}
+
+.reportHeroTop{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+gap:15px
+}
+
+.reportHero h2{
+margin:4px 0;
+font-size:25px
+}
+
+.reportHero p{
+margin:0;
+color:#cbd5e1;
+font-size:11px
+}
+
+.reportPeriodLabel{
+display:inline-flex;
+align-items:center;
+gap:6px;
+padding:6px 10px;
+border-radius:999px;
+background:rgba(255,255,255,.12);
+font-size:10px;
+font-weight:800
+}
+
+.reportKpis{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+margin-bottom:16px
+}
+
+.reportKpi{
+position:relative;
+overflow:hidden;
+padding:17px;
+border-radius:16px;
+background:var(--card);
+border:1px solid var(--line);
+box-shadow:var(--shadow)
+}
+
+.reportKpi .kpiIcon{
+width:38px;
+height:38px;
+border-radius:11px;
+display:grid;
+place-items:center;
+font-size:18px;
+margin-bottom:9px
+}
+
+.reportKpi.income .kpiIcon{
+background:#dcfce7
+}
+
+.reportKpi.expense .kpiIcon{
+background:#fee2e2
+}
+
+.reportKpi.profit .kpiIcon{
+background:#dcfce7
+}
+
+.reportKpi.loss .kpiIcon{
+background:#fee2e2
+}
+
+.reportKpi.stock .kpiIcon{
+background:#dbeafe
+}
+
+.reportKpi .kpiTitle{
+font-size:10px;
+font-weight:800;
+color:var(--muted)
+}
+
+.reportKpi .kpiNumber{
+font-size:22px;
+font-weight:950;
+margin-top:5px
+}
+
+.reportKpi .kpiSub{
+font-size:9px;
+color:var(--muted);
+margin-top:5px
+}
+
+.reportResult{
+display:grid;
+grid-template-columns:1.35fr .65fr;
+gap:15px;
+margin-bottom:16px
+}
+
+.resultCard{
+padding:22px;
+border-radius:18px;
+border:1px solid var(--line);
+background:var(--card);
+box-shadow:var(--shadow)
+}
+
+.resultCard.profitState{
+background:linear-gradient(135deg,#f0fdf4,#ffffff)
+}
+
+.resultCard.lossState{
+background:linear-gradient(135deg,#fff1f2,#ffffff)
+}
+
+.resultTitle{
+display:flex;
+align-items:center;
+gap:8px;
+font-size:11px;
+font-weight:900;
+color:var(--muted)
+}
+
+.resultIcon{
+width:34px;
+height:34px;
+border-radius:10px;
+display:grid;
+place-items:center
+}
+
+.resultCard.profitState .resultIcon{
+background:#dcfce7;
+color:#15803d
+}
+
+.resultCard.lossState .resultIcon{
+background:#fee2e2;
+color:#b91c1c
+}
+
+.resultAmount{
+font-size:34px;
+font-weight:950;
+margin:8px 0 3px
+}
+
+.resultCaption{
+font-size:10px;
+color:var(--muted)
+}
+
+.resultBreakdown{
+margin-top:17px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px
+}
+
+.resultLine{
+padding:11px;
+border-radius:12px;
+background:rgba(255,255,255,.7);
+border:1px solid var(--line)
+}
+
+.resultLine span{
+font-size:9px;
+color:var(--muted);
+display:block
+}
+
+.resultLine b{
+font-size:14px;
+display:block;
+margin-top:4px
+}
+
+.marginCircle{
+height:100%;
+min-height:190px;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+border-radius:18px;
+background:var(--card2);
+border:1px solid var(--line)
+}
+
+.marginCircle b{
+font-size:36px;
+font-weight:950
+}
+
+.marginCircle span{
+font-size:10px;
+color:var(--muted)
+}
+
+.reportSectionTitle{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+margin:4px 0 11px
+}
+
+.reportSectionTitle h3{
+font-size:13px;
+margin:0
+}
+
+.reportSectionTitle span{
+font-size:9px;
+color:var(--muted)
+}
+
+.legend{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+font-size:9px;
+color:var(--muted)
+}
+
+.legendItem{
+display:flex;
+align-items:center;
+gap:5px
+}
+
+.legendDot{
+width:9px;
+height:9px;
+border-radius:50%
+}
+
+.greenDot{background:#16a34a}
+.redDot{background:#dc2626}
+.blueDot{background:#2563eb}
+.orangeDot{background:#f59e0b}
+
+.reportFilters{
+display:flex;
+gap:7px;
+flex-wrap:wrap
+}
+
+.reportFilters .btn.activePeriod{
+background:#1d4ed8;
+color:#fff
+}
+
+/* QUICK */
+
+.quick{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px
+}
+
+.quick button{
+border:1px solid var(--line);
+background:var(--card2);
+border-radius:14px;
+padding:18px 8px;
+font-weight:900
+}
+
+.note{
+font-size:10px;
+color:var(--muted);
+padding:8px 0
+}
+
+/* MODAL */
+
+.modalBg{
+position:fixed;
+inset:0;
+background:rgba(2,6,23,.65);
+z-index:100;
+display:none;
+align-items:center;
+justify-content:center;
+padding:14px
+}
+
+.modalBg.show{
+display:flex
+}
+
+.modal{
+width:min(720px,100%);
+max-height:93vh;
+overflow:auto;
+background:var(--card);
+border-radius:18px;
+box-shadow:0 30px 90px rgba(0,0,0,.3)
+}
+
+.modalHead{
+padding:16px 18px;
+border-bottom:1px solid var(--line);
+display:flex;
+justify-content:space-between;
+align-items:center
+}
+
+.modalHead h3{
+margin:0;
+font-size:15px
+}
+
+.modalBody{
+padding:18px
+}
+
+.modalFoot{
+padding:14px 18px;
+border-top:1px solid var(--line);
+display:flex;
+justify-content:flex-end;
+gap:8px
+}
+
+.calc{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px
+}
+
+.calcBox{
+padding:13px;
+border:1px solid var(--line);
+border-radius:12px;
+background:var(--card2)
+}
+
+.calcBox b{
+display:block;
+font-size:16px;
+margin-top:5px
+}
+
+.toast{
+position:fixed;
+right:18px;
+bottom:18px;
+z-index:300;
+background:#07111f;
+color:#fff;
+padding:12px 15px;
+border-radius:11px;
+box-shadow:0 15px 45px rgba(0,0,0,.25);
+font-size:11px;
+opacity:0;
+transform:translateY(15px);
+pointer-events:none;
+transition:.2s
+}
+
+.toast.show{
+opacity:1;
+transform:none
+}
+
+/* DARK */
+
+.dark{
+--bg:#070d18;
+--card:#101927;
+--card2:#141f31;
+--text:#e6edf7;
+--muted:#94a3b8;
+--line:#263448;
+--shadow:0 12px 35px rgba(0,0,0,.22)
+}
+
+.dark .topbar{
+background:rgba(16,25,39,.9)
+}
+
+.dark tbody tr:hover{
+background:#141f31
+}
+
+.dark .profit{
+background:#052e16
+}
+
+.dark .profit.loss{
+background:#3f1118
+}
+
+.dark .resultCard.profitState{
+background:linear-gradient(135deg,#052e16,#101927)
+}
+
+.dark .resultCard.lossState{
+background:linear-gradient(135deg,#3f1118,#101927)
+}
+
+.dark .chip{
+background:#101927
+}
+
+.dark .fg label{
+color:#cbd5e1
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1120px){
+.stats{grid-template-columns:repeat(2,1fr)}
+.kpis{grid-template-columns:repeat(3,1fr)}
+.reportKpis{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:820px){
+.sidebar{
+transform:translateX(-105%);
+box-shadow:18px 0 45px rgba(0,0,0,.3)
+}
+
+.sidebar.open{
+transform:none
+}
+
+.main{
+margin-left:0
+}
+
+.menu{
+display:grid;
+place-items:center
+}
+
+.topbar{
+padding:10px 13px
+}
+
+.content{
+padding:12px
+}
+
+.grid2{
+grid-template-columns:1fr
+}
+
+.grid3{
+grid-template-columns:repeat(2,1fr)
+}
+
+.formGrid{
+grid-template-columns:1fr
+}
+
+.heroIn{
+flex-direction:column;
+align-items:flex-start
+}
+
+.quick{
+grid-template-columns:repeat(2,1fr)
+}
+
+.hideMob{
+display:none
+}
+
+.reportResult{
+grid-template-columns:1fr
+}
+}
+
+@media(max-width:520px){
+.stats{
+grid-template-columns:1fr 1fr;
+gap:8px
+}
+
+.stat{
+padding:12px
+}
+
+.statValue{
+font-size:18px
+}
+
+.grid3{
+grid-template-columns:1fr
+}
+
+.kpis{
+grid-template-columns:1fr 1fr
+}
+
+.card{
+padding:13px;
+border-radius:15px
+}
+
+.title h1{
+font-size:17px
+}
+
+.content{
+padding:9px
+}
+
+.hero h2{
+font-size:23px
+}
+
+.calc{
+grid-template-columns:1fr 1fr
+}
+
+.reportKpis{
+grid-template-columns:1fr 1fr
+}
+
+.resultAmount{
+font-size:28px
+}
+
+.resultBreakdown{
+grid-template-columns:1fr
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+
+<div class="logo">
+<div class="logoIcon">👕</div>
+<div>
+<h2>Garment Manager</h2>
+<small>BUSINESS MANAGEMENT PRO X</small>
+</div>
+</div>
+
+<div class="navTitle">MAIN MENU</div>
+
+<button class="nav active" onclick="showPage('dashboard',this)">
+<i>📊</i>Dashboard
+</button>
+
+<button class="nav" onclick="showPage('production',this)">
+<i>👕</i>Production
+</button>
+
+<button class="nav" onclick="showPage('sales',this)">
+<i>💰</i>Sales & Income
+</button>
+
+<button class="nav" onclick="showPage('expenses',this)">
+<i>💸</i>Expenses
+</button>
+
+<button class="nav" onclick="showPage('stock',this)">
+<i>📦</i>Stock
+</button>
+
+<button class="nav" onclick="showPage('reports',this)">
+<i>📈</i>Reports
+</button>
+
+<div class="navTitle">GARMENT TOOLS</div>
+
+<button class="nav" onclick="showPage('products',this)">
+<i>🏷️</i>Products
+</button>
+
+<button class="nav" onclick="showPage('orders',this)">
+<i>🛒</i>Orders
+</button>
+
+<button class="nav" onclick="showPage('customers',this)">
+<i>👥</i>Customers
+</button>
+
+<button class="nav" onclick="showPage('suppliers',this)">
+<i>🚚</i>Suppliers
+</button>
+
+<button class="nav" onclick="showPage('employees',this)">
+<i>👷</i>Employees
+</button>
+
+<div class="navTitle">SYSTEM</div>
+
+<button class="nav" onclick="showPage('settings',this)">
+<i>⚙️</i>Settings
+</button>
+
+<div class="sideFoot">
+
+<button class="nav" onclick="backupData()">
+<i>💾</i>Backup
+</button>
+
+<button class="nav" onclick="$('restoreInput').click()">
+<i>♻️</i>Restore
+</button>
+
+<input
+id="restoreInput"
+type="file"
+accept=".json"
+hidden
+onchange="restoreData(event)"
+>
+
+</div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+<header class="topbar">
+
+<div class="topLeft">
+
+<button class="menu" onclick="toggleSidebar()">☰</button>
+
+<div class="title">
+<h1 id="pageTitle">Dashboard</h1>
+<p id="currentDate"></p>
+</div>
+
+</div>
+
+<div class="topRight">
+
+<div class="owner hideMob">
+<div class="avatar" id="topAvatar">G</div>
+</div>
+
+<div class="owner hideMob">
+<strong id="topOwner">Garment Owner</strong>
+<span>Business Owner</span>
+</div>
+
+<button class="iconBtn" onclick="toggleDark()">🌙</button>
+
+<button class="btn primary hideMob" onclick="openQuickAdd()">
+＋ Add Record
+</button>
+
+</div>
+</header>
+
+<div class="content">
+
+<!-- DASHBOARD -->
+<section class="page active" id="page-dashboard">
+
+<div id="lowStockAlert"></div>
+
+<div class="card hero">
+
+<div class="heroIn">
+
+<div>
+<small>⚡ SMART GARMENT CONTROL CENTER</small>
+
+<h2 id="welcomeName">Garment Owner</h2>
+
+<p>
+Production • Sales • Stock • Profit —
+ሁሉንም በአንድ ቦታ ይቆጣጠሩ።
+</p>
+</div>
+
+<button
+class="btn"
+style="background:#fff;color:#102033"
+onclick="showPageByName('reports')">
+📊 Reports
+</button>
+
+</div>
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<div class="statTop">
+<div class="statLabel">ጠቅላላ ገቢ</div>
+<div class="statIcon">💰</div>
+</div>
+
+<div class="statValue" id="dashIncome">0 ETB</div>
+<div class="statSub">Actual recorded income</div>
+</div>
+
+<div class="stat">
+<div class="statTop">
+<div class="statLabel">ጠቅላላ ወጪ</div>
+<div class="statIcon">💸</div>
+</div>
+
+<div class="statValue" id="dashExpense">0 ETB</div>
+<div class="statSub">Actual recorded expenses</div>
+</div>
+
+<div class="stat">
+<div class="statTop">
+<div class="statLabel">Net Profit / Loss</div>
+<div class="statIcon">📈</div>
+</div>
+
+<div class="statValue" id="dashProfit">0 ETB</div>
+<div class="statSub" id="dashProfitPercent">0%</div>
+</div>
+
+<div class="stat">
+<div class="statTop">
+<div class="statLabel">Stock Value</div>
+<div class="statIcon">📦</div>
+</div>
+
+<div class="statValue" id="dashStockValue">0 ETB</div>
+<div class="statSub">Remaining stock × unit cost</div>
+</div>
+
+</div>
+
+<div class="grid3">
+
+<div class="stat">
+<div class="statLabel">👕 የተመረተ</div>
+<div class="statValue" id="dashProduced">0</div>
+<div class="statSub">Pieces</div>
+</div>
+
+<div class="stat">
+<div class="statLabel">🛒 የተሸጠ</div>
+<div class="statValue" id="dashSold">0</div>
+<div class="statSub">Pieces</div>
+</div>
+
+<div class="stat">
+<div class="statLabel">📦 ያልተሸጠ ቀሪ</div>
+<div class="statValue" id="dashRemaining">0</div>
+<div class="statSub">Pieces</div>
+</div>
+
+</div>
+
+<div class="grid2">
+
+<div class="card">
+
+<div class="head">
+<div>
+<h3>📈 የ7 ቀን ገቢ / ወጪ / ትርፍ</h3>
+<p>Daily business movement</p>
+</div>
+</div>
+
+<div class="chartBox">
+<canvas id="weeklyChart"></canvas>
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="head">
+<div>
+<h3>💎 Business Result</h3>
+<p>Actual income minus expenses</p>
+</div>
+</div>
+
+<div id="profitBox" class="profit">
+
+<div class="statLabel">የንግድ ውጤት</div>
+
+<div id="bigProfit" class="profitNum greenTxt">
+0 ETB
+</div>
+
+<div id="bigProfitPct" class="statSub">
+0%
+</div>
+
+<div id="profitMsg" class="statSub">
+ገቢ − ወጪ
+</div>
+
+</div>
+
+<div style="margin-top:14px">
+
+<div style="display:flex;justify-content:space-between;font-size:10px">
+<span>Income</span>
+<b id="dashIncome2">0</b>
+</div>
+
+<div class="progress">
+<div id="incProgress"
+style="width:0;background:#16a34a">
+</div>
+</div>
+
+</div>
+
+<div style="margin-top:12px">
+
+<div style="display:flex;justify-content:space-between;font-size:10px">
+<span>Expense</span>
+<b id="dashExpense2">0</b>
+</div>
+
+<div class="progress">
+<div id="expProgress"
+style="width:0;background:#dc2626">
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="head">
+
+<div>
+<h3>📦 Stock Overview</h3>
+<p>Location እና Unit በተለየ ሁኔታ</p>
+</div>
+
+<button
+class="btn primary small"
+onclick="showPageByName('stock')">
+Manage Stock
+</button>
+
+</div>
+
+<div class="grid3">
+
+<div class="profit">
+<div class="statLabel">🏭 Factory</div>
+<div class="statValue" id="factorySummary">0</div>
+<div class="statSub" id="factoryUnits">No stock</div>
+</div>
+
+<div class="profit">
+<div class="statLabel">🏬 Warehouse</div>
+<div class="statValue" id="warehouseSummary">0</div>
+<div class="statSub" id="warehouseUnits">No stock</div>
+</div>
+
+<div class="profit">
+<div class="statLabel">⚠️ Low Stock</div>
+<div class="statValue" id="dashLow">0</div>
+<div class="statSub">Auto warning</div>
+</div>
+
+</div>
+</div>
+
+<div class="card">
+
+<div class="head">
+<div>
+<h3>🧾 Latest Transactions</h3>
+<p>Recent income and expenses</p>
+</div>
+</div>
+
+<div class="tableWrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Date</th>
+<th>Description</th>
+<th>Type</th>
+<th>Amount</th>
+</tr>
+</thead>
+
+<tbody id="recentTable"></tbody>
+
+</table>
+
+</div>
+</div>
+
+</section>
+
+
+<!-- PRODUCTION -->
+<section class="page" id="page-production">
+
+<div class="card">
+
+<div class="head">
+<div>
+<h3>👕 Production</h3>
+<p>
+ምርት ሲመረት በምርት ስም ላይ በራሱ ይጨምራል።
+</p>
+</div>
+</div>
+
+<div class="formGrid">
+
+<div class="fg">
+<label>የምርት ስም</label>
+<input id="pName" placeholder="T-Shirt Black M">
+</div>
+
+<div class="fg">
+<label>Category</label>
+<input id="pCategory" placeholder="T-Shirt / Shirt / Trouser">
+</div>
+
+<div class="fg">
+<label>Production Date</label>
+<input id="pDate" type="date">
+</div>
+
+<div class="fg">
+<label>የጨርቅ ስም</label>
+<input id="pFabricName" placeholder="Cotton">
+</div>
+
+<div class="fg">
+<label>የጨርቅ መጠን (KG)</label>
+<input id="fabricKg" type="number" min="0" step=".01" oninput="calculateProduction()">
+</div>
+
+<div class="fg">
+<label>የ1 KG ዋጋ</label>
+<input id="kgPrice" type="number" min="0" step=".01" oninput="calculateProduction()">
+</div>
+
+<div class="fg">
+<label>Labor Cost</label>
+<input id="laborCost" type="number" min="0" step=".01" oninput="calculateProduction()">
+</div>
+
+<div class="fg">
+<label>Other Cost</label>
+<input id="otherCost" type="number" min="0" step=".01" oninput="calculateProduction()">
+</div>
+
+<div class="fg">
+<label>የተመረተ ብዛት (Piece)</label>
+<input id="pieceQty" type="number" min="1" step="1" oninput="calculateProduction()">
+</div>
+
+<div class="fg">
+<label>የ1 Piece ሽያጭ ዋጋ</label>
+<input id="piecePrice" type="number" min="0" step=".01" oninput="calculateProduction()">
+</div>
+
+</div>
+
+<div class="calc" style="margin-top:14px">
+
+<div class="calcBox">
+<span class="statLabel">Fabric Cost</span>
+<b id="rFabric">0 ETB</b>
+</div>
+
+<div class="calcBox">
+<span class="statLabel">Total Cost</span>
+<b id="rCost">0 ETB</b>
+</div>
+
+<div class="calcBox">
+<span class="statLabel">Unit Cost</span>
+<b id="rUnitCost">0 ETB</b>
+</div>
+
+<div class="calcBox">
+<span class="statLabel">Estimated Sales</span>
+<b id="rSales">0 ETB</b>
+</div>
+
+<div class="calcBox">
+<span class="statLabel">Estimated Profit</span>
+<b id="rProfit">0 ETB</b>
+</div>
+
+<div class="calcBox">
+<span class="statLabel">Margin</span>
+<b id="rProfitPct">0%</b>
+</div>
+
+</div>
+
+<div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
+
+<button class="btn primary" onclick="saveProduction()">
+💾 Save Production
+</button>
+
+<button class="btn light" onclick="clearProduction()">
+↺ Clear
+</button>
+
+</div>
+
+<div class="note">
+Production ሲቀመጥ፦ የጨርቅ Stock ከFactory ላይ በKG ይቀንሳል፤
+የተመረተው ምርት በPiece በFactory Finished Stock ላይ ይጨምራል።
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="head">
+<div>
+<h3>Production History</h3>
+<p>የተመረተ ምርት መዝገብ</p>
+</div>
+</div>
+
+<div class="tableWrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Date</th>
+<th>Product</th>
+<th>Category</th>
+<th>Fabric</th>
+<th>KG</th>
+<th>Produced</th>
+<th>Cost</th>
+<th>Est. Sales</th>
+<th>Margin</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="productionTable"></tbody>
+
+</table>
+
+</div>
+</div>
+
+</section>
+
+
+<!-- SALES -->
+<section class="page" id="page-sales">
+
+<div class="card">
+
+<div class="head">
+<div>
+<h3>💰 New Sale</h3>
+<p>
+በምርት ስም ይምረጡ፤ Piece ወይም Dozen ይጠቀሙ፤ Stock በራሱ ይቀንሳል።
+</p>
+</div>
+</div>
+
+<div class="formGrid">
+
+<div class="fg">
+<label>Product Name</label>
+<select id="saleProduct" onchange="updateSaleStock()"></select>
+</div>
+
+<div class="fg">
+<label>Customer</label>
+<select id="saleCustomer"></select>
+</div>
+
+<div class="fg">
+<label>Quantity Unit</label>
+<select id="saleUnit" onchange="updateSaleCalc()">
+<option value="piece">Piece / ፍሬ</option>
+<option value="dozen">Dozen / ደርዘን</option>
+</select>
+</div>
+
+<div class="fg">
+<label>Quantity</label>
+<input id="saleQty" type="number" min="0.01" step=".01" value="1" oninput="updateSaleCalc()">
+</div>
+
+<div class="fg">
+<label>Price per selected unit</label>
+<input id="saleUnitPrice" type="number" min="0" step=".01" value="0" oninput="updateSaleCalc()">
+</div>
+
+<div class="fg">
+<label>Sale Date</label>
+<input id="saleDate" type="datetime-local">
+</div>
+
+</div>
+
+<div class="calc" style="margin-top:14px">
+
+<div class="calcBox">
+<span class="statLabel">Available Stock</span>
+<b id="saleAvailable">0 Piece</b>
+</div>
+
+<div class="calcBox">
+<span class="statLabel">Total Pieces</span>
+<b id="salePieces">0</b>
+</div>
+
+<div class="calcBox">
+<span class="statLabel">Total Sale</span>
+<b id="saleTotal">0 ETB</b>
+</div>
+
+</div>
+
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+
+<button class="btn primary" onclick="saveSale()">
+🛒 Complete Sale & Reduce Stock
+</button>
+
+<button class="btn light" onclick="clearSaleForm()">
+↺ Clear
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="head">
+<div>
+<h3>🧾 Sales History</h3>
+<p>የተሸጠ ብዛት እና ከStock የተቀነሰው</p>
+</div>
+</div>
+
+<div class="tableWrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Date</th>
+<th>Product</th>
+<th>Customer</th>
+<th>Qty</th>
+<th>Pieces</th>
+<th>Unit Price</th>
+<th>Total</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="salesTable"></tbody>
+
+</table>
+
+</div>
+</div>
+
+<div class="card">
+
+<div class="head">
+
+<div>
+<h3>💵 Other Income</h3>
+<p>Sales ካልሆነ ተጨማሪ ገቢ እዚህ ይመዝግቡ።</p>
+</div>
+
+<button class="btn primary small" onclick="openIncomeModal()">
+＋ Income
+</button>
+
+</div>
+
+<div class="tableWrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Date</th>
+<th>Description</th>
+<th>Category</th>
+<th>Amount</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="incomeTable"></tbody>
+
+</table>
+
+</div>
+</div>
+
+</section>
+
+
+<!-- EXPENSES -->
+<section class="page" id="page-expenses">
+
+<div class="card">
+
+<div class="head">
+
+<div>
+<h3>💸 Expenses</h3>
+<p>የቢዝነስ ወጪዎች</p>
+</div>
+
+<button class="btn danger" onclick="openExpenseModal()">
+＋ Add Expense
+</button>
+
+</div>
+
+<div class="toolbar">
+
+<input
+class="search"
+id="expenseSearch"
+placeholder="🔍 ወጪ ፈልግ..."
+oninput="renderExpenses()"
+>
+
+<select id="expenseFilter" onchange="renderExpenses()">
+<option value="">All</option>
+<option value="fabric">Fabric</option>
+<option value="salary">Salary</option>
+<option value="rent">Rent</option>
+<option value="transport">Transport</option>
+<option value="electricity">Electricity</option>
+<option value="machine">Machine</option>
+<option value="purchase">Purchase</option>
+<option value="other">Other</option>
+</select>
+
+</div>
+
+<div class="tableWrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Date</th>
+<th>Description</th>
+<th>Category</th>
+<th>Amount</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="expenseTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- STOCK -->
+<section class="page" id="page-stock">
+
+<div id="stockAlert"></div>
+
+<div class="stats">
+
+<div class="stat">
+<div class="statLabel">🏭 Factory Pieces</div>
+<div class="statValue" id="factoryPieces">0</div>
+<div class="statSub">Finished products</div>
+</div>
+
+<div class="stat">
+<div class="statLabel">🏬 Warehouse Pieces</div>
+<div class="statValue" id="warehousePieces">0</div>
+<div class="statSub">Finished products</div>
+</div>
+
+<div class="stat">
+<div class="statLabel">🧵 Fabric</div>
+<div class="statValue" id="fabricSummary">0</div>
+<div class="statSub">KG / Meter</div>
+</div>
+
+<div class="stat">
+<div class="statLabel">⚠️ Low Stock</div>
+<div class="statValue" id="lowCount">0</div>
+<div class="statSub">Auto updated</div>
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="head">
+
+<div>
+<h3>📦 Stock Management</h3>
+<p>
+ጨርቅ በStock ላይ፤ ምርት በProduct ላይ።
+Unit እንደገባ በዚያው ይቆጠራል።
+</p>
+</div>
+
+<button class="btn primary" onclick="openStockModal()">
+＋ Add / Increase Stock
+</button>
+
+</div>
+
+<div class="toolbar">
+
+<input
+class="search"
+id="stockSearch"
+placeholder="🔍 ስም/Color/Category ፈልግ..."
+oninput="renderStock()"
+>
+
+<select id="stockLoc" onchange="renderStock()">
+<option value="">All Locations</option>
+<option value="factory">🏭 Factory</option>
+<option value="warehouse">🏬 Warehouse</option>
+</select>
+
+<select id="stockCat" onchange="renderStock()">
+<option value="">All Categories</option>
+<option value="fabric">🧵 Fabric</option>
+<option value="finished">👕 Finished Product</option>
+<option value="accessory">🧷 Accessory</option>
+</select>
+
+<select id="stockUnitFilter" onchange="renderStock()">
+<option value="">All Units</option>
+<option value="piece">Piece</option>
+<option value="kg">KG</option>
+<option value="meter">Meter</option>
+</select>
+
+</div>
+
+<div class="tableWrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Location</th>
+<th>Category</th>
+<th>Name</th>
+<th>Color</th>
+<th>Size</th>
+<th>Unit</th>
+<th>Opening</th>
+<th>In</th>
+<th>Out</th>
+<th>Balance</th>
+<th>Min</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+</thead>
+
+<tbody id="stockTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- REPORTS -->
+<section class="page" id="page-reports">
+
+<!-- REPORT HERO -->
+
+<div class="reportHero">
+
+<div class="reportHeroTop">
+
+<div>
+
+<div class="reportPeriodLabel">
+📊 <span id="reportPeriodText">Today</span>
+</div>
+
+<h2>Business Performance Report</h2>
+
+<p>
+የንግድዎን ገቢ፣ ወጪ፣ ትርፍ እና ኪሳራ
+በግልጽ እና በቀላሉ ይከታተሉ።
+</p>
+
+</div>
+
+<button
+class="btn"
+style="background:#fff;color:#102033"
+onclick="printReport()">
+🖨️ Print Report
+</button>
+
+</div>
+
+</div>
+
+
+<!-- REPORT FILTER -->
+
+<div class="card">
+
+<div class="head">
+
+<div>
+<h3>📅 Report Period</h3>
+<p>የሪፖርት ጊዜ ይምረጡ</p>
+</div>
+
+<div class="legend">
+
+<div class="legendItem">
+<span class="legendDot greenDot"></span>
+Profit / Income
+</div>
+
+<div class="legendItem">
+<span class="legendDot redDot"></span>
+Loss / Expense
+</div>
+
+</div>
+
+</div>
+
+<div class="reportFilters">
+
+<button
+class="btn light small activePeriod"
+onclick="setReport('day',this)">
+Today
+</button>
+
+<button
+class="btn light small"
+onclick="setReport('week',this)">
+7 Days
+</button>
+
+<button
+class="btn light small"
+onclick="setReport('month',this)">
+This Month
+</button>
+
+<button
+class="btn light small"
+onclick="setReport('year',this)">
+12 Months
+</button>
+
+<button
+class="btn light small"
+onclick="setReport('all',this)">
+All Time
+</button>
+
+</div>
+
+</div>
+
+
+<!-- KPI CARDS -->
+
+<div class="reportKpis">
+
+<div class="reportKpi income">
+
+<div class="kpiIcon">💰</div>
+
+<div class="kpiTitle">
+TOTAL INCOME
+</div>
+
+<div class="kpiNumber greenTxt" id="repIncome">
+0 ETB
+</div>
+
+<div class="kpiSub">
+Sales + Other Income
+</div>
+
+</div>
+
+
+<div class="reportKpi expense">
+
+<div class="kpiIcon">💸</div>
+
+<div class="kpiTitle">
+TOTAL EXPENSE
+</div>
+
+<div class="kpiNumber redTxt" id="repExpense">
+0 ETB
+</div>
+
+<div class="kpiSub">
+All business expenses
+</div>
+
+</div>
+
+
+<div class="reportKpi" id="repResultKpi">
+
+<div class="kpiIcon" id="repResultIcon">
+📈
+</div>
+
+<div class="kpiTitle" id="repResultLabel">
+NET PROFIT
+</div>
+
+<div class="kpiNumber" id="repProfit">
+0 ETB
+</div>
+
+<div class="kpiSub" id="repResultSub">
+Income − Expense
+</div>
+
+</div>
+
+
+<div class="reportKpi stock">
+
+<div class="kpiIcon">📦</div>
+
+<div class="kpiTitle">
+STOCK VALUE
+</div>
+
+<div class="kpiNumber" id="repStock">
+0 ETB
+</div>
+
+<div class="kpiSub">
+Current remaining stock
+</div>
+
+</div>
+
+</div>
+
+
+<!-- PROFIT / LOSS RESULT -->
+
+<div class="reportResult">
+
+<div class="resultCard profitState" id="reportResultCard">
+
+<div class="resultTitle">
+
+<div class="resultIcon" id="reportResultIcon">
+✓
+</div>
+
+<span id="resultStatusText">
+NET PROFIT
+</span>
+
+</div>
+
+<div class="resultAmount greenTxt" id="bigReportResult">
+0 ETB
+</div>
+
+<div class="resultCaption" id="resultCaption">
+የገቢ እና ወጪ ልዩነት
+</div>
+
+<div class="resultBreakdown">
+
+<div class="resultLine">
+<span>💰 Total Income</span>
+<b class="greenTxt" id="resultIncome">
+0 ETB
+</b>
+</div>
+
+<div class="resultLine">
+<span>💸 Total Expense</span>
+<b class="redTxt" id="resultExpense">
+0 ETB
+</b>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="resultCard">
+
+<div class="marginCircle">
+
+<span>PROFIT MARGIN</span>
+
+<b id="reportMargin" class="greenTxt">
+0%
+</b>
+
+<span id="marginDescription">
+Profit compared with income
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- CHARTS -->
+
+<div class="grid2">
+
+<div class="card">
+
+<div class="reportSectionTitle">
+
+<div>
+<h3>💰 Income vs Expense</h3>
+<span>የገቢ እና ወጪ ማነፃፀሪያ</span>
+</div>
+
+<div class="legend">
+
+<div class="legendItem">
+<span class="legendDot greenDot"></span>
+Income
+</div>
+
+<div class="legendItem">
+<span class="legendDot redDot"></span>
+Expense
+</div>
+
+</div>
+
+</div>
+
+<div class="chartBox">
+<canvas id="dailyChart"></canvas>
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="reportSectionTitle">
+
+<div>
+<h3>📈 Production vs Sales</h3>
+<span>የተመረተ እና የተሸጠ</span>
+</div>
+
+<div class="legend">
+
+<div class="legendItem">
+<span class="legendDot blueDot"></span>
+Production
+</div>
+
+<div class="legendItem">
+<span class="legendDot orangeDot"></span>
+Sales
+</div>
+
+</div>
+
+</div>
+
+<div class="chartBox">
+<canvas id="trendChart"></canvas>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="grid2">
+
+<div class="card">
+
+<div class="reportSectionTitle">
+
+<div>
+<h3>🧾 Expense by Category</h3>
+<span>ወጪ በምድብ</span>
+</div>
+
+</div>
+
+<div class="chartBox">
+<canvas id="catChart"></canvas>
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="reportSectionTitle">
+
+<div>
+<h3>⏱️ Today's Hourly Activity</h3>
+<span>የዛሬ የሰዓት ገቢ / ወጪ</span>
+</div>
+
+</div>
+
+<div class="chartBox">
+<canvas id="hourChart"></canvas>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="reportSectionTitle">
+
+<div>
+<h3>📦 Stock by Location & Unit</h3>
+<span>Piece / KG / Meter</span>
+</div>
+
+</div>
+
+<div class="chartBox">
+<canvas id="stockChart"></canvas>
+</div>
+
+</div>
+
+
+<!-- DAILY TABLE -->
+
+<div class="card">
+
+<div class="reportSectionTitle">
+
+<div>
+<h3>📅 Detailed Daily Report</h3>
+<span>የቀን ዝርዝር ሪፖርት</span>
+</div>
+
+<div class="legend">
+
+<div class="legendItem">
+<span class="legendDot greenDot"></span>
+Profit
+</div>
+
+<div class="legendItem">
+<span class="legendDot redDot"></span>
+Loss
+</div>
+
+</div>
+
+</div>
+
+<div class="tableWrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Date</th>
+<th>Income</th>
+<th>Expense</th>
+<th>Profit / Loss</th>
+<th>Margin</th>
+<th>Produced</th>
+<th>Sold</th>
+</tr>
+</thead>
+
+<tbody id="dailyReport"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+<section class="page" id="page-products">
+
+<div class="card">
+
+<div class="head">
+
+<div>
+<h3>🏷️ Products</h3>
+<p>
+የምርት ስም እዚህ በነፃ ይጻፋል፤ ጨርቅ ስም አይደለም።
+</p>
+</div>
+
+<button class="btn primary" onclick="openProductModal()">
+＋ Product
+</button>
+
+</div>
+
+<div class="tableWrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Product Name</th>
+<th>Category</th>
+<th>Selling Price / Piece</th>
+<th>Available</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="productsTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CUSTOMERS -->
+<section class="page" id="page-customers">
+
+<div class="card">
+
+<div class="head">
+
+<div>
+<h3>👥 Customers</h3>
+<p>Customer information</p>
+</div>
+
+<button class="btn primary" onclick="openCustomerModal()">
+＋ Customer
+</button>
+
+</div>
+
+<div class="tableWrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Name</th>
+<th>Phone</th>
+<th>Address</th>
+<th>Orders</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="customersTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ORDERS -->
+<section class="page" id="page-orders">
+
+<div class="card">
+
+<div class="head">
+
+<div>
+<h3>🛒 Orders</h3>
+<p>Customer orders</p>
+</div>
+
+<button class="btn primary" onclick="openOrderModal()">
+＋ Order
+</button>
+
+</div>
+
+<div class="tableWrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Date</th>
+<th>Customer</th>
+<th>Product</th>
+<th>Qty</th>
+<th>Total</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="ordersTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SUPPLIERS -->
+<section class="page" id="page-suppliers">
+
+<div class="card">
+
+<div class="head">
+
+<div>
+<h3>🚚 Suppliers</h3>
+<p>Fabric and accessory suppliers</p>
+</div>
+
+<button class="btn primary" onclick="openSupplierModal()">
+＋ Supplier
+</button>
+
+</div>
+
+<div class="tableWrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Name</th>
+<th>Phone</th>
+<th>Material</th>
+<th>Address</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="suppliersTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- EMPLOYEES -->
+<section class="page" id="page-employees">
+
+<div class="card">
+
+<div class="head">
+
+<div>
+<h3>👷 Employees</h3>
+<p>Employee and salary information</p>
+</div>
+
+<button class="btn primary" onclick="openEmployeeModal()">
+＋ Employee
+</button>
+
+</div>
+
+<div class="tableWrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Name</th>
+<th>Role</th>
+<th>Phone</th>
+<th>Salary</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="employeesTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SETTINGS -->
+<section class="page" id="page-settings">
+
+<div class="card">
+
+<div class="head">
+
+<div>
+<h3>⚙️ Settings</h3>
+<p>Business profile</p>
+</div>
+
+</div>
+
+<div class="formGrid">
+
+<div class="fg">
+<label>Business Name</label>
+<input id="businessName">
+</div>
+
+<div class="fg">
+<label>Owner Name</label>
+<input id="ownerName">
+</div>
+
+<div class="fg">
+<label>Phone</label>
+<input id="businessPhone">
+</div>
+
+<div class="fg">
+<label>Address</label>
+<input id="businessAddress">
+</div>
+
+<div class="fg">
+<label>Currency</label>
+<input id="currency" value="ETB">
+</div>
+
+</div>
+
+<button
+class="btn primary"
+style="margin-top:13px"
+onclick="saveSettings()">
+💾 Save Settings
+</button>
+
+</div>
+
+<div class="card">
+
+<div class="head">
+
+<div>
+<h3>💾 Data Management</h3>
+<p>Data is saved in this browser.</p>
+</div>
+
+</div>
+
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+
+<button class="btn primary" onclick="backupData()">
+📥 Backup
+</button>
+
+<button class="btn light" onclick="$('restoreInput').click()">
+♻️ Restore
+</button>
+
+<button class="btn danger" onclick="clearAll()">
+🗑️ Delete All
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+</main>
+</div>
+
+
+<!-- INCOME MODAL -->
+<div class="modalBg" id="m-income">
+
+<div class="modal">
+
+<div class="modalHead">
+<h3>💰 Add Income</h3>
+<button class="iconBtn" onclick="closeModal('income')">×</button>
+</div>
+
+<div class="modalBody">
+
+<div class="formGrid">
+
+<div class="fg">
+<label>Description</label>
+<input id="incomeDesc">
+</div>
+
+<div class="fg">
+<label>Category</label>
+<select id="incomeCat">
+<option value="sales">Sales</option>
+<option value="other">Other Income</option>
+</select>
+</div>
+
+<div class="fg">
+<label>Amount</label>
+<input id="incomeAmount" type="number" min="0" step=".01">
+</div>
+
+<div class="fg">
+<label>Date</label>
+<input id="incomeDate" type="datetime-local">
+</div>
+
+</div>
+
+</div>
+
+<div class="modalFoot">
+
+<button class="btn light" onclick="closeModal('income')">
+Cancel
+</button>
+
+<button class="btn primary" onclick="saveIncome()">
+Save
+</button>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- EXPENSE MODAL -->
+<div class="modalBg" id="m-expense">
+
+<div class="modal">
+
+<div class="modalHead">
+<h3>💸 Add Expense</h3>
+<button class="iconBtn" onclick="closeModal('expense')">×</button>
+</div>
+
+<div class="modalBody">
+
+<div class="formGrid">
+
+<div class="fg">
+<label>Description</label>
+<input id="expenseDesc">
+</div>
+
+<div class="fg">
+<label>Category</label>
+
+<select id="expenseCat">
+<option value="fabric">Fabric</option>
+<option value="salary">Salary</option>
+<option value="rent">Rent</option>
+<option value="transport">Transport</option>
+<option value="electricity">Electricity</option>
+<option value="machine">Machine</option>
+<option value="purchase">Purchase</option>
+<option value="other">Other</option>
+</select>
+
+</div>
+
+<div class="fg">
+<label>Amount</label>
+<input id="expenseAmount" type="number" min="0" step=".01">
+</div>
+
+<div class="fg">
+<label>Date</label>
+<input id="expenseDate" type="datetime-local">
+</div>
+
+</div>
+
+</div>
+
+<div class="modalFoot">
+
+<button class="btn light" onclick="closeModal('expense')">
+Cancel
+</button>
+
+<button class="btn danger" onclick="saveExpense()">
+Save
+</button>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- STOCK MODAL -->
+<div class="modalBg" id="m-stock">
+
+<div class="modal">
+
+<div class="modalHead">
+<h3>📦 Stock Movement</h3>
+<button class="iconBtn" onclick="closeModal('stock')">×</button>
+</div>
+
+<div class="modalBody">
+
+<div class="formGrid">
+
+<div class="fg">
+<label>Location</label>
+<select id="stLocation">
+<option value="warehouse">🏬 Warehouse</option>
+<option value="factory">🏭 Factory</option>
+</select>
+</div>
+
+<div class="fg">
+<label>Category</label>
+<select id="stCategory">
+<option value="fabric">🧵 Fabric</option>
+<option value="finished">👕 Finished Product</option>
+<option value="accessory">🧷 Accessory</option>
+</select>
+</div>
+
+<div class="fg">
+<label>Item / Fabric Name</label>
+<input id="stName">
+</div>
+
+<div class="fg">
+<label>Color</label>
+<input id="stColor">
+</div>
+
+<div class="fg">
+<label>Size</label>
+<select id="stSize">
+<option>N/A</option>
+<option>XS</option>
+<option>S</option>
+<option>M</option>
+<option>L</option>
+<option>XL</option>
+<option>XXL</option>
+<option>XXXL</option>
+</select>
+</div>
+
+<div class="fg">
+<label>Unit</label>
+<select id="stUnit">
+<option value="piece">Piece / ፍሬ</option>
+<option value="kg">KG</option>
+<option value="meter">Meter</option>
+</select>
+</div>
+
+<div class="fg">
+<label>Quantity IN</label>
+<input id="stIn" type="number" min="0" step=".01" value="0">
+</div>
+
+<div class="fg">
+<label>Quantity OUT</label>
+<input id="stOut" type="number" min="0" step=".01" value="0">
+</div>
+
+<div class="fg">
+<label>Minimum Warning Level</label>
+<input id="stMin" type="number" min="0" step=".01" value="0">
+</div>
+
+<div class="fg">
+<label>Unit Cost</label>
+<input id="stCost" type="number" min="0" step=".01" value="0">
+</div>
+
+</div>
+
+</div>
+
+<div class="modalFoot">
+
+<button class="btn light" onclick="closeModal('stock')">
+Cancel
+</button>
+
+<button class="btn primary" onclick="saveStockMovement()">
+Save Movement
+</button>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- PRODUCT MODAL -->
+<div class="modalBg" id="m-product">
+
+<div class="modal">
+
+<div class="modalHead">
+<h3>🏷️ Add Product</h3>
+<button class="iconBtn" onclick="closeModal('product')">×</button>
+</div>
+
+<div class="modalBody">
+
+<div class="formGrid">
+
+<div class="fg">
+<label>Product Name</label>
+<input id="prodName">
+</div>
+
+<div class="fg">
+<label>Category</label>
+<input id="prodCat">
+</div>
+
+<div class="fg">
+<label>Selling Price / Piece</label>
+<input id="prodPrice" type="number" min="0">
+</div>
+
+</div>
+
+</div>
+
+<div class="modalFoot">
+
+<button class="btn light" onclick="closeModal('product')">
+Cancel
+</button>
+
+<button class="btn primary" onclick="saveProduct()">
+Save
+</button>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- CUSTOMER -->
+<div class="modalBg" id="m-customer">
+
+<div class="modal">
+
+<div class="modalHead">
+<h3>👥 Add Customer</h3>
+<button class="iconBtn" onclick="closeModal('customer')">×</button>
+</div>
+
+<div class="modalBody">
+
+<div class="formGrid">
+
+<div class="fg">
+<label>Name</label>
+<input id="cusName">
+</div>
+
+<div class="fg">
+<label>Phone</label>
+<input id="cusPhone">
+</div>
+
+<div class="fg">
+<label>Address</label>
+<input id="cusAddress">
+</div>
+
+</div>
+
+</div>
+
+<div class="modalFoot">
+
+<button class="btn light" onclick="closeModal('customer')">
+Cancel
+</button>
+
+<button class="btn primary" onclick="saveCustomer()">
+Save
+</button>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- ORDER -->
+<div class="modalBg" id="m-order">
+
+<div class="modal">
+
+<div class="modalHead">
+<h3>🛒 Add Order</h3>
+<button class="iconBtn" onclick="closeModal('order')">×</button>
+</div>
+
+<div class="modalBody">
+
+<div class="formGrid">
+
+<div class="fg">
+<label>Customer</label>
+<select id="ordCustomer"></select>
+</div>
+
+<div class="fg">
+<label>Product</label>
+<select id="ordProduct"></select>
+</div>
+
+<div class="fg">
+<label>Quantity</label>
+<input id="ordQty" type="number" min="1" value="1">
+</div>
+
+<div class="fg">
+<label>Status</label>
+<select id="ordStatus">
+<option>Pending</option>
+<option>Processing</option>
+<option>Completed</option>
+<option>Cancelled</option>
+</select>
+</div>
+
+</div>
+
+</div>
+
+<div class="modalFoot">
+
+<button class="btn light" onclick="closeModal('order')">
+Cancel
+</button>
+
+<button class="btn primary" onclick="saveOrder()">
+Save
+</button>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- SUPPLIER -->
+<div class="modalBg" id="m-supplier">
+
+<div class="modal">
+
+<div class="modalHead">
+<h3>🚚 Add Supplier</h3>
+<button class="iconBtn" onclick="closeModal('supplier')">×</button>
+</div>
+
+<div class="modalBody">
+
+<div class="formGrid">
+
+<div class="fg">
+<label>Name</label>
+<input id="supName">
+</div>
+
+<div class="fg">
+<label>Phone</label>
+<input id="supPhone">
+</div>
+
+<div class="fg">
+<label>Material</label>
+<input id="supMaterial">
+</div>
+
+<div class="fg">
+<label>Address</label>
+<input id="supAddress">
+</div>
+
+</div>
+
+</div>
+
+<div class="modalFoot">
+
+<button class="btn light" onclick="closeModal('supplier')">
+Cancel
+</button>
+
+<button class="btn primary" onclick="saveSupplier()">
+Save
+</button>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- EMPLOYEE -->
+<div class="modalBg" id="m-employee">
+
+<div class="modal">
+
+<div class="modalHead">
+<h3>👷 Add Employee</h3>
+<button class="iconBtn" onclick="closeModal('employee')">×</button>
+</div>
+
+<div class="modalBody">
+
+<div class="formGrid">
+
+<div class="fg">
+<label>Name</label>
+<input id="empName">
+</div>
+
+<div class="fg">
+<label>Role</label>
+<input id="empRole">
+</div>
+
+<div class="fg">
+<label>Phone</label>
+<input id="empPhone">
+</div>
+
+<div class="fg">
+<label>Salary</label>
+<input id="empSalary" type="number" min="0">
+</div>
+
+</div>
+
+</div>
+
+<div class="modalFoot">
+
+<button class="btn light" onclick="closeModal('employee')">
+Cancel
+</button>
+
+<button class="btn primary" onclick="saveEmployee()">
+Save
+</button>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- QUICK -->
+<div class="modalBg" id="m-quick">
+
+<div class="modal">
+
+<div class="modalHead">
+<h3>⚡ Quick Add</h3>
+<button class="iconBtn" onclick="closeModal('quick')">×</button>
+</div>
+
+<div class="modalBody">
+
+<div class="quick">
+
+<button onclick="closeModal('quick');openIncomeModal()">
+💰<br>Income
+</button>
+
+<button onclick="closeModal('quick');openExpenseModal()">
+💸<br>Expense
+</button>
+
+<button onclick="closeModal('quick');openStockModal()">
+📦<br>Stock
+</button>
+
+<button onclick="closeModal('quick');showPageByName('production')">
+👕<br>Production
+</button>
+
+<button onclick="closeModal('quick');showPageByName('sales')">
+🛒<br>Sale
+</button>
+
+<button onclick="closeModal('quick');openProductModal()">
+🏷️<br>Product
+</button>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+const KEY='garment_manager_pro_x_v2';
+
+const base={
+settings:{
+businessName:'Garment Manager',
+ownerName:'Garment Owner',
+phone:'',
+address:'',
+currency:'ETB'
+},
+incomes:[],
+expenses:[],
+stocks:[],
+stockMoves:[],
+productions:[],
+sales:[],
+products:[],
+customers:[],
+orders:[],
+suppliers:[],
+employees:[]
+};
+
+let state=loadState();
+let charts={};
+let reportPeriod='day';
+
+function $(id){
+return document.getElementById(id);
+}
+
+function n(v){
+return Math.max(0,Number(v)||0);
+}
+
+function uid(){
+return crypto.randomUUID?
+crypto.randomUUID():
+Date.now().toString(36)+Math.random().toString(36).slice(2);
+}
+
+function esc(v){
+return String(v??'').replace(/[&<>"']/g,m=>({
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#039;'
+}[m]));
+}
+
+function loadState(){
+
+try{
+
+const x=JSON.parse(
+localStorage.getItem(KEY)||'null'
+);
+
+if(!x)
+return structuredClone(base);
+
+return {
+...base,
+...x,
+settings:{
+...base.settings,
+...(x.settings||{})
+},
+incomes:x.incomes||[],
+expenses:x.expenses||[],
+stocks:x.stocks||[],
+stockMoves:x.stockMoves||[],
+productions:x.productions||[],
+sales:x.sales||[],
+products:x.products||[],
+customers:x.customers||[],
+orders:x.orders||[],
+suppliers:x.suppliers||[],
+employees:x.employees||[]
+};
+
+}catch{
+
+return structuredClone(base);
+
+}
+
+}
+
+function save(){
+localStorage.setItem(KEY,JSON.stringify(state));
+}
+
+function money(v){
+return Number(v||0).toLocaleString(
+'en-US',
+{maximumFractionDigits:2}
+)+' '+(state.settings.currency||'ETB');
+}
+
+function dateOnly(v){
+const d=new Date(v);
+return isNaN(d)?'':d.toLocaleDateString('en-CA');
+}
+
+function fmt(v){
+const d=new Date(v);
+return isNaN(d)?
+v:
+new Intl.DateTimeFormat(
+'en-GB',
+{dateStyle:'medium',timeStyle:'short'}
+).format(d);
+}
+
+function nowLocal(){
+const d=new Date();
+d.setMinutes(
+d.getMinutes()-d.getTimezoneOffset()
+);
+return d.toISOString().slice(0,16);
+}
+
+function unitLabel(u){
+return u==='dozen'?'Dozen':
+u==='kg'?'KG':
+u==='meter'?'Meter':
+'Piece';
+}
+
+
+/* NAVIGATION */
+
+function showPage(name,btn){
+
+document.querySelectorAll('.page')
+.forEach(x=>x.classList.remove('active'));
+
+$('page-'+name)?.classList.add('active');
+
+document.querySelectorAll('.nav')
+.forEach(x=>x.classList.remove('active'));
+
+if(btn)
+btn.classList.add('active');
+
+const titles={
+dashboard:'Dashboard',
+production:'Production',
+sales:'Sales & Income',
+expenses:'Expenses',
+stock:'Stock',
+reports:'Reports',
+products:'Products',
+orders:'Orders',
+customers:'Customers',
+suppliers:'Suppliers',
+employees:'Employees',
+settings:'Settings'
+};
+
+$('pageTitle').textContent=titles[name]||name;
+
+if(innerWidth<=820)
+$('sidebar').classList.remove('open');
+
+renderAll();
+
+}
+
+function showPageByName(name){
+
+const b=[...document.querySelectorAll('.nav')]
+.find(x=>
+(x.getAttribute('onclick')||'')
+.includes("'"+name+"'")
+);
+
+showPage(name,b);
+
+}
+
+function toggleSidebar(){
+$('sidebar').classList.toggle('open');
+}
+
+function toggleDark(){
+
+document.body.classList.toggle('dark');
+
+localStorage.setItem(
+'gm_dark',
+document.body.classList.contains('dark')
+);
+
+}
+
+
+/* MODALS */
+
+function openModal(x){
+$('m-'+x).classList.add('show');
+}
+
+function closeModal(x){
+$('m-'+x).classList.remove('show');
+}
+
+document.querySelectorAll('.modalBg')
+.forEach(m=>{
+m.addEventListener('click',e=>{
+if(e.target===m)
+m.classList.remove('show');
+});
+});
+
+document.addEventListener('keydown',e=>{
+if(e.key==='Escape')
+document.querySelectorAll('.modalBg.show')
+.forEach(x=>x.classList.remove('show'));
+});
+
+
+function toast(m){
+
+const t=$('toast');
+
+t.textContent=m;
+t.classList.add('show');
+
+clearTimeout(window._toast);
+
+window._toast=setTimeout(
+()=>t.classList.remove('show'),
+2300
+);
+
+}
+
+
+/* INCOME */
+
+function openIncomeModal(){
+$('incomeDate').value=nowLocal();
+openModal('income');
+}
+
+function saveIncome(){
+
+const desc=$('incomeDesc').value.trim();
+const amount=n($('incomeAmount').value);
+const date=$('incomeDate').value||nowLocal();
+
+if(!desc||amount<=0)
+return toast('መግለጫ እና መጠን ያስገቡ');
+
+state.incomes.push({
+id:uid(),
+desc,
+category:$('incomeCat').value,
+amount,
+date
+});
+
+save();
+closeModal('income');
+
+$('incomeDesc').value='';
+$('incomeAmount').value='';
+
+renderAll();
+
+toast('ገቢ ተመዝግቧል');
+
+}
+
+
+/* EXPENSE */
+
+function openExpenseModal(){
+$('expenseDate').value=nowLocal();
+openModal('expense');
+}
+
+function saveExpense(){
+
+const desc=$('expenseDesc').value.trim();
+const amount=n($('expenseAmount').value);
+const date=$('expenseDate').value||nowLocal();
+
+if(!desc||amount<=0)
+return toast('መግለጫ እና መጠን ያስገቡ');
+
+state.expenses.push({
+id:uid(),
+desc,
+category:$('expenseCat').value,
+amount,
+date
+});
+
+save();
+closeModal('expense');
+
+$('expenseDesc').value='';
+$('expenseAmount').value='';
+
+renderAll();
+
+toast('ወጪ ተመዝግቧል');
+
+}
+
+
+/* PRODUCTION */
+
+function calcProduction(){
+
+const kg=n($('fabricKg').value);
+const kp=n($('kgPrice').value);
+const labor=n($('laborCost').value);
+const other=n($('otherCost').value);
+const qty=n($('pieceQty').value);
+const price=n($('piecePrice').value);
+
+const fabric=kg*kp;
+const total=fabric+labor+other;
+const unit=qty?total/qty:0;
+const sales=qty*price;
+const profit=sales-total;
+const pct=sales?profit/sales*100:0;
+
+$('rFabric').textContent=money(fabric);
+$('rCost').textContent=money(total);
+$('rUnitCost').textContent=money(unit);
+$('rSales').textContent=money(sales);
+
+$('rProfit').textContent=money(profit);
+$('rProfit').className=
+profit>=0?'greenTxt':'redTxt';
+
+$('rProfitPct').textContent=pct.toFixed(1)+'%';
+
+$('rProfitPct').className=
+pct>=0?'greenTxt':'redTxt';
+
+return{
+fabric,total,unit,sales,profit,pct
+};
+
+}
+
+function calculateProduction(){
+calcProduction();
+}
+
+function clearProduction(){
+
+[
+'pName',
+'pCategory',
+'pFabricName',
+'fabricKg',
+'kgPrice',
+'laborCost',
+'otherCost',
+'pieceQty',
+'piecePrice'
+].forEach(id=>$(id).value='');
+
+$('pDate').value=dateOnly(new Date());
+
+calcProduction();
+
+}
+
+function findStock({
+location,
+name,
+unit,
+color='',
+size='N/A',
+category
+}){
+
+return state.stocks.find(s=>
+s.location===location&&
+s.name.toLowerCase()===name.toLowerCase()&&
+s.unit===unit&&
+(s.color||'').toLowerCase()===(color||'').toLowerCase()&&
+(s.size||'N/A')===(size||'N/A')&&
+(!category||s.category===category)
+);
+
+}
+
+function balance(s){
+
+return Number(
+(
+n(s.opening)+
+n(s.in)-
+n(s.out)
+).toFixed(4)
+);
+
+}
+
+function isLow(s){
+
+return n(s.min)>0&&
+balance(s)<=n(s.min);
+
+}
+
+function changeStock({
+location,
+name,
+unit,
+category,
+color='',
+size='N/A',
+inQty=0,
+outQty=0,
+min=0,
+cost=0,
+reason='manual'
+}){
+
+let s=findStock({
+location,
+name,
+unit,
+color,
+size,
+category
+});
+
+if(!s){
+
+s={
+id:uid(),
+location,
+category,
+name,
+color,
+size,
+unit,
+opening:0,
+in:0,
+out:0,
+min:n(min),
+unitCost:n(cost)
+};
+
+state.stocks.push(s);
+
+}
+
+if(balance(s)+n(inQty)-n(outQty)<-0.00001)
+return false;
+
+s.in+=n(inQty);
+s.out+=n(outQty);
+
+if(n(min)>0)
+s.min=n(min);
+
+if(n(cost)>0)
+s.unitCost=n(cost);
+
+state.stockMoves.push({
+id:uid(),
+date:new Date().toISOString(),
+location,
+name,
+unit,
+category,
+color,
+size,
+inQty:n(inQty),
+outQty:n(outQty),
+reason
+});
+
+return true;
+
+}
+
+
+/* STOCK */
+
+function openStockModal(){
+
+[
+'stName',
+'stColor',
+'stIn',
+'stOut',
+'stMin',
+'stCost'
+].forEach(id=>{
+$(id).value=
+id==='stIn'||
+id==='stOut'||
+id==='stMin'||
+id==='stCost'?'0':'';
+});
+
+$('stLocation').value='warehouse';
+$('stCategory').value='fabric';
+$('stSize').value='N/A';
+$('stUnit').value='kg';
+
+openModal('stock');
+
+}
+
+function saveStockMovement(){
+
+const name=$('stName').value.trim();
+const location=$('stLocation').value;
+const category=$('stCategory').value;
+const color=$('stColor').value.trim();
+const size=$('stSize').value;
+const unit=$('stUnit').value;
+
+const inq=n($('stIn').value);
+const outq=n($('stOut').value);
+const min=n($('stMin').value);
+const cost=n($('stCost').value);
+
+if(!name)
+return toast('Stock ስም ያስገቡ');
+
+if(inq<=0&&outq<=0)
+return toast('IN ወይም OUT መጠን ያስገቡ');
+
+if(inq>0&&outq>0)
+return toast('በአንድ ጊዜ IN እና OUT አትጠቀሙ።');
+
+if(!changeStock({
+location,
+name,
+unit,
+category,
+color,
+size,
+inQty:inq,
+outQty:outq,
+min,
+cost,
+reason:'manual'
+}))
+return toast('በቂ Balance የለም');
+
+save();
+closeModal('stock');
+renderAll();
+
+toast('Stock በትክክል ተሻሽሏል');
+
+}
+
+
+/* PRODUCTION SAVE */
+
+function saveProduction(){
+
+const name=$('pName').value.trim();
+const cat=$('pCategory').value.trim()||'Uncategorized';
+const fabric=$('pFabricName').value.trim();
+const kg=n($('fabricKg').value);
+const qty=n($('pieceQty').value);
+const price=n($('piecePrice').value);
+const date=$('pDate').value||dateOnly(new Date());
+
+if(!name||qty<=0)
+return toast('Product name እና Produced quantity ያስገቡ');
+
+if(kg>0&&!fabric)
+return toast('የጨርቅ ስም ያስገቡ');
+
+const c=calcProduction();
+
+if(kg>0){
+
+const fs=findStock({
+location:'factory',
+name:fabric,
+unit:'kg',
+category:'fabric'
+});
+
+if(!fs||balance(fs)<kg)
+return toast('Factory ላይ የዚህ ጨርቅ KG በቂ የለም።');
+
+}
+
+if(kg>0){
+
+changeStock({
+location:'factory',
+name:fabric,
+unit:'kg',
+category:'fabric',
+outQty:kg,
+reason:'production-consumption'
+});
+
+}
+
+changeStock({
+location:'factory',
+name,
+unit:'piece',
+category:'finished',
+inQty:qty,
+cost:c.unit,
+reason:'production-output'
+});
+
+let p=state.products.find(
+x=>x.name.toLowerCase()===name.toLowerCase()
+);
+
+if(!p){
+
+state.products.push({
+id:uid(),
+name,
+category:cat,
+price
+});
+
+}else{
+
+p.category=cat;
+
+if(price>0)
+p.price=price;
+
+}
+
+state.productions.push({
+id:uid(),
+date,
+name,
+category:cat,
+fabric,
+kg,
+produced:qty,
+cost:c.total,
+sales:c.sales,
+profit:c.profit
+});
+
+save();
+renderAll();
+clearProduction();
+
+toast('Production ተመዝግቧል');
+
+}
+
+
+/* PRODUCTS / SALES */
+
+function stockAvailableForProduct(name){
+
+return state.stocks
+.filter(s=>
+s.category==='finished'&&
+s.unit==='piece'&&
+s.name.toLowerCase()===name.toLowerCase()
+)
+.reduce((a,s)=>a+balance(s),0);
+
+}
+
+function updateSaleOptions(){
+
+const p=$('saleProduct');
+
+p.innerHTML=
+state.products.map(x=>
+`<option value="${esc(x.id)}">
+${esc(x.name)} — ${esc(x.category)}
+</option>`
+).join('')||
+'<option value="">No product</option>';
+
+$('saleCustomer').innerHTML=
+'<option value="">Walk-in Customer</option>'+
+state.customers.map(x=>
+`<option value="${esc(x.id)}">${esc(x.name)}</option>`
+).join('');
+
+updateSaleStock();
+
+}
+
+function updateSaleStock(){
+
+const p=state.products.find(
+x=>x.id===$('saleProduct').value
+);
+
+const av=p?
+stockAvailableForProduct(p.name):0;
+
+$('saleAvailable').textContent=
+av.toLocaleString()+' Piece';
+
+if(p&&n($('saleUnitPrice').value)===0)
+$('saleUnitPrice').value=n(p.price);
+
+updateSaleCalc();
+
+}
+
+function updateSaleCalc(){
+
+const unit=$('saleUnit').value;
+const qty=n($('saleQty').value);
+const price=n($('saleUnitPrice').value);
+
+const pieces=
+unit==='dozen'?qty*12:qty;
+
+$('salePieces').textContent=
+pieces.toLocaleString();
+
+$('saleTotal').textContent=
+money(qty*price);
+
+const p=state.products.find(
+x=>x.id===$('saleProduct').value
+);
+
+$('saleAvailable').textContent=
+(p?
+stockAvailableForProduct(p.name):0)
+.toLocaleString()+' Piece';
+
+}
+
+function clearSaleForm(){
+
+$('saleQty').value=1;
+$('saleUnitPrice').value=0;
+$('saleDate').value=nowLocal();
+
+updateSaleOptions();
+
+}
+
+function saveSale(){
+
+const p=state.products.find(
+x=>x.id===$('saleProduct').value
+);
+
+const unit=$('saleUnit').value;
+const qty=n($('saleQty').value);
+const price=n($('saleUnitPrice').value);
+const pieces=unit==='dozen'?qty*12:qty;
+
+if(!p)
+return toast('Product ይምረጡ');
+
+if(qty<=0||price<=0)
+return toast('Quantity እና Price በትክክል ያስገቡ');
+
+const av=stockAvailableForProduct(p.name);
+
+if(pieces>av)
+return toast('Stock በቂ የለም');
+
+let remaining=pieces;
+
+for(
+const s of state.stocks.filter(
+x=>
+x.category==='finished'&&
+x.unit==='piece'&&
+x.name.toLowerCase()===p.name.toLowerCase()&&
+balance(x)>0
+)
+){
+
+const take=Math.min(
+balance(s),
+remaining
+);
+
+s.out+=take;
+
+remaining-=take;
+
+if(remaining<=0)
+break;
+
+}
+
+if(remaining>0)
+return toast('Stock ላይ ስህተት');
+
+const total=qty*price;
+const date=$('saleDate').value||nowLocal();
+
+const sale={
+id:uid(),
+date,
+productId:p.id,
+productName:p.name,
+category:p.category,
+customerId:$('saleCustomer').value,
+unit,
+qty,
+pieces,
+unitPrice:price,
+total
+};
+
+state.sales.push(sale);
+
+state.incomes.push({
+id:uid(),
+date,
+desc:'Sale — '+p.name,
+category:'sales',
+amount:total,
+saleId:sale.id
+});
+
+save();
+clearSaleForm();
+renderAll();
+
+toast('ሽያጩ ተመዝግቧል');
+
+}
+
+
+/* RANGE / METRICS */
+
+function totals(arr,from,to){
+
+return arr
+.filter(x=>inRange(x.date,from,to))
+.reduce((a,x)=>a+n(x.amount),0);
+
+}
+
+function inRange(d,from,to){
+
+const x=new Date(d);
+
+return(!from||x>=from)&&(!to||x<=to);
+
+}
+
+function range(period){
+
+const now=new Date();
+const s=new Date(now);
+
+if(period==='day'){
+
+s.setHours(0,0,0,0);
+
+}
+
+else if(period==='week'){
+
+s.setDate(now.getDate()-6);
+s.setHours(0,0,0,0);
+
+}
+
+else if(period==='month'){
+
+s.setDate(1);
+s.setHours(0,0,0,0);
+
+}
+
+else if(period==='year'){
+
+s.setMonth(0,1);
+s.setHours(0,0,0,0);
+
+}
+
+else{
+
+return{
+from:null,
+to:null
+};
+
+}
+
+return{
+from:s,
+to:now
+};
+
+}
+
+function metric(from,to){
+
+const inc=totals(
+state.incomes,
+from,
+to
+);
+
+const exp=totals(
+state.expenses,
+from,
+to
+);
+
+const prod=
+state.productions
+.filter(x=>inRange(x.date,from,to))
+.reduce((a,x)=>a+n(x.produced),0);
+
+const sold=
+state.sales
+.filter(x=>inRange(x.date,from,to))
+.reduce((a,x)=>a+n(x.pieces),0);
+
+return{
+inc,
+exp,
+profit:inc-exp,
+prod,
+sold
+};
+
+}
+
+
+/* DASHBOARD */
+
+function renderDashboard(){
+
+const m=metric();
+
+const stockVal=
+state.stocks.reduce(
+(a,s)=>a+balance(s)*n(s.unitCost),
+0
+);
+
+const remain=
+state.products.reduce(
+(a,p)=>a+stockAvailableForProduct(p.name),
+0
+);
+
+$('dashIncome').textContent=money(m.inc);
+$('dashExpense').textContent=money(m.exp);
+$('dashProfit').textContent=money(m.profit);
+
+$('dashProfit').className=
+'statValue '+(m.profit>=0?'greenTxt':'redTxt');
+
+$('dashProfitPercent').textContent=
+(m.inc?m.profit/m.inc*100:0)
+.toFixed(1)+'%';
+
+$('dashStockValue').textContent=
+money(stockVal);
+
+$('dashProduced').textContent=
+m.prod.toLocaleString();
+
+$('dashSold').textContent=
+m.sold.toLocaleString();
+
+$('dashRemaining').textContent=
+remain.toLocaleString();
+
+$('dashIncome2').textContent=
+money(m.inc);
+
+$('dashExpense2').textContent=
+money(m.exp);
+
+const mx=Math.max(
+m.inc,
+m.exp,
+1
+);
+
+$('incProgress').style.width=
+m.inc/mx*100+'%';
+
+$('expProgress').style.width=
+m.exp/mx*100+'%';
+
+$('bigProfit').textContent=
+money(m.profit);
+
+$('bigProfit').className=
+'profitNum '+(m.profit<0?'redTxt':'greenTxt');
+
+$('bigProfitPct').textContent=
+(m.inc?m.profit/m.inc*100:0)
+.toFixed(1)+'%';
+
+$('profitMsg').textContent=
+m.profit>=0?
+'ገቢ − ወጪ = አዎንታዊ ውጤት':
+'ወጪ ከገቢ በላይ ነው';
+
+$('profitBox').classList.toggle(
+'loss',
+m.profit<0
+);
+
+$('dashLow').textContent=
+state.stocks.filter(isLow).length;
+
+$('factorySummary').textContent=
+locationSummary('factory');
+
+$('warehouseSummary').textContent=
+locationSummary('warehouse');
+
+$('factoryUnits').textContent=
+locationUnits('factory');
+
+$('warehouseUnits').textContent=
+locationUnits('warehouse');
+
+const recent=[
+...state.incomes.map(x=>({...x,type:'Income'})),
+...state.expenses.map(x=>({...x,type:'Expense'}))
+]
+.sort((a,b)=>new Date(b.date)-new Date(a.date))
+.slice(0,8);
+
+$('recentTable').innerHTML=
+recent.length?
+recent.map(x=>
+`<tr>
+<td>${fmt(x.date)}</td>
+<td>${esc(x.desc)}</td>
+<td>
+<span class="badge ${x.type==='Income'?'ok':'low'}">
+${x.type}
+</span>
+</td>
+<td>${money(x.amount)}</td>
+</tr>`
+).join(''):
+'<tr><td colspan="4">No transactions</td></tr>';
+
+drawWeekly();
+
+}
+
+function locationSummary(loc){
+
+const a=state.stocks.filter(
+s=>s.location===loc
+);
+
+const p=a
+.filter(s=>s.unit==='piece')
+.reduce((x,s)=>x+balance(s),0);
+
+const k=a
+.filter(s=>s.unit==='kg')
+.reduce((x,s)=>x+balance(s),0);
+
+const m=a
+.filter(s=>s.unit==='meter')
+.reduce((x,s)=>x+balance(s),0);
+
+return[
+p?p+' pcs':'',
+k?k+' KG':'',
+m?m+' m':''
+]
+.filter(Boolean)
+.join(' · ')||'0';
+
+}
+
+function locationUnits(loc){
+
+return[
+...new Set(
+state.stocks
+.filter(s=>s.location===loc)
+.map(s=>unitLabel(s.unit))
+)
+].join(', ')||'No stock';
+
+}
+
+
+/* CHART */
+
+function chartColor(i){
+
+return[
+'#2563eb',
+'#16a34a',
+'#dc2626',
+'#f59e0b',
+'#7c3aed',
+'#06b6d4',
+'#ec4899',
+'#64748b'
+][i%8];
+
+}
+
+function drawChart(
+id,
+type,
+labels,
+sets
+){
+
+const c=$(id);
+
+if(!c)return;
+
+const ctx=c.getContext('2d');
+const dpr=devicePixelRatio||1;
+const w=c.clientWidth;
+const h=c.clientHeight;
+
+c.width=w*dpr;
+c.height=h*dpr;
+
+ctx.setTransform(
+dpr,0,0,dpr,0,0
+);
+
+ctx.clearRect(0,0,w,h);
+
+const muted=
+getComputedStyle(document.body)
+.getPropertyValue('--muted');
+
+const line=
+getComputedStyle(document.body)
+.getPropertyValue('--line');
+
+const text=
+getComputedStyle(document.body)
+.getPropertyValue('--text');
+
+const pad={
+l:45,
+r:15,
+t:25,
+b:45
+};
+
+const cw=w-pad.l-pad.r;
+const ch=h-pad.t-pad.b;
+
+const vals=sets.flatMap(
+s=>s.data.map(Number)
+);
+
+const max=Math.max(
+1,
+...vals
+);
+
+ctx.font='10px system-ui';
+ctx.fillStyle=muted;
+ctx.strokeStyle=line;
+
+for(let g=0;g<=4;g++){
+
+const y=
+pad.t+ch*g/4;
+
+ctx.beginPath();
+
+ctx.moveTo(
+pad.l,
+y
+);
+
+ctx.lineTo(
+w-pad.r,
+y
+);
+
+ctx.stroke();
+
+ctx.fillText(
+(max*(1-g/4))
+.toLocaleString(),
+5,
+y+3
+);
+
+}
+
+if(type==='doughnut'){
+
+const cx=w/2;
+const cy=h/2-5;
+const r=Math.min(cw,ch)/3;
+
+const total=
+sets[0].data.reduce(
+(a,b)=>a+Number(b),
+0
+)||1;
+
+let start=-Math.PI/2;
+
+sets[0].data.forEach(
+(v,i)=>{
+
+const a=
+Number(v)/total*Math.PI*2;
+
+ctx.beginPath();
+
+ctx.moveTo(cx,cy);
+
+ctx.arc(
+cx,
+cy,
+r,
+start,
+start+a
+);
+
+ctx.closePath();
+
+ctx.fillStyle=chartColor(i);
+
+ctx.fill();
+
+start+=a;
+
+}
+);
+
+ctx.fillStyle=text;
+ctx.font='bold 13px system-ui';
+ctx.textAlign='center';
+
+ctx.fillText(
+'Expenses',
+cx,
+cy+4
+);
+
+ctx.textAlign='left';
+
+labels.forEach((x,i)=>{
+
+ctx.fillStyle=chartColor(i);
+
+ctx.fillRect(
+10,
+10+i*16,
+8,
+8
+);
+
+ctx.fillStyle=text;
+
+ctx.fillText(
+String(x).slice(0,22),
+24,
+18+i*16
+);
+
+});
+
+return;
+
+}
+
+
+/* X LABELS */
+
+if(labels.length){
+
+const xstep=
+labels.length>1?
+cw/(labels.length-1):
+cw;
+
+labels.forEach((lab,i)=>{
+
+const x=
+pad.l+xstep*i;
+
+ctx.fillStyle=muted;
+
+ctx.fillText(
+String(lab).slice(0,9),
+Math.max(2,x-14),
+h-20
+);
+
+});
+
+}
+
+
+/* DATA */
+
+sets.forEach(
+(s,si)=>{
+
+ctx.strokeStyle=
+chartColor(si);
+
+ctx.fillStyle=
+chartColor(si);
+
+ctx.lineWidth=2;
+
+if(type==='bar'){
+
+const group=
+cw/Math.max(labels.length,1);
+
+const barW=
+Math.max(
+3,
+group/(sets.length+1)
+);
+
+s.data.forEach(
+(v,i)=>{
+
+const x=
+pad.l+
+group*i+
+group/2+
+(si-(sets.length-1)/2)*barW-
+barW/2;
+
+const bh=
+Number(v)/max*ch;
+
+const y=
+pad.t+ch-bh;
+
+ctx.fillRect(
+x,
+y,
+barW,
+Math.max(1,bh)
+);
+
+});
+
+}else{
+
+ctx.beginPath();
+
+s.data.forEach(
+(v,i)=>{
+
+const x=
+pad.l+
+(labels.length>1?
+cw/(labels.length-1)*i:
+cw/2);
+
+const y=
+pad.t+
+ch-
+Number(v)/max*ch;
+
+if(i===0)
+ctx.moveTo(x,y);
+else
+ctx.lineTo(x,y);
+
+});
+
+ctx.stroke();
+
+s.data.forEach(
+(v,i)=>{
+
+const x=
+pad.l+
+(labels.length>1?
+cw/(labels.length-1)*i:
+cw/2);
+
+const y=
+pad.t+
+ch-
+Number(v)/max*ch;
+
+ctx.beginPath();
+
+ctx.arc(
+x,y,3,0,Math.PI*2
+);
+
+ctx.fill();
+
+});
+
+}
+
+}
+);
+
+
+/* LEGEND */
+
+sets.forEach(
+(s,i)=>{
+
+const x=
+pad.l+i*100;
+
+ctx.fillStyle=
+chartColor(i);
+
+ctx.fillRect(
+x,
+5,
+9,
+9
+);
+
+ctx.fillStyle=text;
+
+ctx.fillText(
+s.label,
+x+14,
+13
+);
+
+});
+
+}
+
+
+/* WEEKLY */
+
+function drawWeekly(){
+
+const labels=[];
+const i=[];
+const e=[];
+const p=[];
+
+for(let k=6;k>=0;k--){
+
+const d=new Date();
+
+d.setDate(
+d.getDate()-k
+);
+
+d.setHours(
+0,0,0,0
+);
+
+const z=new Date(d);
+
+z.setHours(
+23,59,59,999
+);
+
+const a=
+totals(
+state.incomes,
+d,
+z
+);
+
+const b=
+totals(
+state.expenses,
+d,
+z
+);
+
+labels.push(
+d.toLocaleDateString(
+'en-GB',
+{weekday:'short'}
+)
+);
+
+i.push(a);
+e.push(b);
+p.push(a-b);
+
+}
+
+drawChart(
+'weeklyChart',
+'line',
+labels,
+[
+{label:'Income',data:i},
+{label:'Expense',data:e},
+{label:'Profit',data:p}
+]
+);
+
+}
+
+
+/* REPORTS */
+
+function setReport(p,b){
+
+reportPeriod=p;
+
+document.querySelectorAll(
+'.reportFilters .btn'
+)
+.forEach(x=>x.classList.remove('activePeriod'));
+
+if(b)
+b.classList.add('activePeriod');
+
+renderReports();
+
+}
+
+function reportPeriodName(){
+
+return{
+day:'Today',
+week:'Last 7 Days',
+month:'This Month',
+year:'Last 12 Months',
+all:'All Time'
+}[reportPeriod]||'Today';
+
+}
+
+function renderReports(){
+
+const {from,to}=range(reportPeriod);
+
+const m=metric(from,to);
+
+const stockVal=
+state.stocks.reduce(
+(a,s)=>a+balance(s)*n(s.unitCost),
+0
+);
+
+
+/* PERIOD TITLE */
+
+$('reportPeriodText').textContent=
+reportPeriodName();
+
+
+/* KPI */
+
+$('repIncome').textContent=
+money(m.inc);
+
+$('repExpense').textContent=
+money(m.exp);
+
+$('repStock').textContent=
+money(stockVal);
+
+
+/* PROFIT LOSS */
+
+const isProfit=m.profit>=0;
+
+const margin=
+m.inc?
+m.profit/m.inc*100:
+0;
+
+
+/* KPI RESULT */
+
+const resultKpi=$('repResultKpi');
+const resultIcon=$('repResultIcon');
+const resultLabel=$('repResultLabel');
+const resultSub=$('repResultSub');
+
+resultKpi.className=
+'reportKpi '+(isProfit?'profit':'loss');
+
+resultIcon.textContent=
+isProfit?'📈':'📉';
+
+resultLabel.textContent=
+isProfit?'NET PROFIT':'NET LOSS';
+
+resultSub.textContent=
+isProfit?
+'Income is higher than expense':
+'Expense is higher than income';
+
+$('repProfit').textContent=
+money(Math.abs(m.profit));
+
+$('repProfit').className=
+'kpiNumber '+(isProfit?'greenTxt':'redTxt');
+
+
+/* MAIN RESULT */
+
+const resultCard=
+$('reportResultCard');
+
+const resultIconBig=
+$('reportResultIcon');
+
+const status=
+$('resultStatusText');
+
+resultCard.className=
+'resultCard '+
+(isProfit?'profitState':'lossState');
+
+resultIconBig.textContent=
+isProfit?'✓':'!';
+
+status.textContent=
+isProfit?
+'NET PROFIT — ትርፍ':
+'NET LOSS — ኪሳራ';
+
+$('bigReportResult').textContent=
+money(Math.abs(m.profit));
+
+$('bigReportResult').className=
+'resultAmount '+
+(isProfit?'greenTxt':'redTxt');
+
+$('resultCaption').textContent=
+isProfit?
+'ገቢ − ወጪ = ትርፍ':
+'ወጪ − ገቢ = ኪሳራ';
+
+$('resultIncome').textContent=
+money(m.inc);
+
+$('resultExpense').textContent=
+money(m.exp);
+
+$('reportMargin').textContent=
+margin.toFixed(1)+'%';
+
+$('reportMargin').className=
+margin>=0?
+'greenTxt':
+'redTxt';
+
+$('marginDescription').textContent=
+margin>=0?
+'Profit margin':
+'Loss margin';
+
+
+/* CHART DATA */
+
+const labels=[];
+const inc=[];
+const exp=[];
+const prod=[];
+const sold=[];
+
+if(
+reportPeriod==='year'||
+reportPeriod==='all'
+){
+
+for(let i=11;i>=0;i--){
+
+const d=new Date();
+
+d.setMonth(
+d.getMonth()-i,
+1
+);
+
+const z=new Date(
+d.getFullYear(),
+d.getMonth()+1,
+0,
+23,59,59
+);
+
+labels.push(
+d.toLocaleDateString(
+'en-GB',
+{month:'short'}
+)
+);
+
+inc.push(
+totals(
+state.incomes,
+d,
+z
+)
+);
+
+exp.push(
+totals(
+state.expenses,
+d,
+z
+)
+);
+
+prod.push(
+state.productions
+.filter(x=>inRange(x.date,d,z))
+.reduce(
+(a,x)=>a+n(x.produced),
+0
+)
+);
+
+sold.push(
+state.sales
+.filter(x=>inRange(x.date,d,z))
+.reduce(
+(a,x)=>a+n(x.pieces),
+0
+)
+);
+
+}
+
+}else{
+
+const count=
+reportPeriod==='day'?
+1:
+reportPeriod==='week'?
+7:
+new Date().getDate();
+
+for(let i=count-1;i>=0;i--){
+
+const d=new Date();
+
+d.setDate(
+d.getDate()-i
+);
+
+d.setHours(
+0,0,0,0
+);
+
+const z=new Date(d);
+
+z.setHours(
+23,59,59,999
+);
+
+labels.push(
+d.toLocaleDateString(
+'en-GB',
+{day:'2-digit',month:'short'}
+)
+);
+
+inc.push(
+totals(
+state.incomes,
+d,
+z
+)
+);
+
+exp.push(
+totals(
+state.expenses,
+d,
+z
+)
+);
+
+prod.push(
+state.productions
+.filter(x=>inRange(x.date,d,z))
+.reduce(
+(a,x)=>a+n(x.produced),
+0
+)
+);
+
+sold.push(
+state.sales
+.filter(x=>inRange(x.date,d,z))
+.reduce(
+(a,x)=>a+n(x.pieces),
+0
+)
+);
+
+}
+
+}
+
+
+/* CHARTS */
+
+drawChart(
+'dailyChart',
+'bar',
+labels,
+[
+{label:'Income',data:inc},
+{label:'Expense',data:exp}
+]
+);
+
+drawChart(
+'trendChart',
+'line',
+labels,
+[
+{label:'Production',data:prod},
+{label:'Sales',data:sold}
+]
+);
+
+
+/* CATEGORY */
+
+const cats={};
+
+state.expenses
+.filter(x=>inRange(x.date,from,to))
+.forEach(x=>{
+cats[x.category]=
+(cats[x.category]||0)+n(x.amount);
+});
+
+drawChart(
+'catChart',
+'doughnut',
+Object.keys(cats),
+[
+{
+label:'Expense',
+data:Object.values(cats)
+}
+]
+);
+
+
+/* STOCK */
+
+const stock={};
+
+state.stocks.forEach(s=>{
+
+const key=
+(s.location==='factory'?
+'Factory ':
+'Warehouse ')+
+unitLabel(s.unit);
+
+stock[key]=
+(stock[key]||0)+balance(s);
+
+});
+
+drawChart(
+'stockChart',
+'bar',
+Object.keys(stock),
+[
+{
+label:'Balance',
+data:Object.values(stock)
+}
+]
+);
+
+
+/* HOURLY */
+
+const hd=Array(24).fill(0);
+const he=Array(24).fill(0);
+
+const today=dateOnly(new Date());
+
+state.incomes.forEach(x=>{
+
+if(dateOnly(x.date)===today)
+hd[new Date(x.date).getHours()]+=n(x.amount);
+
+});
+
+state.expenses.forEach(x=>{
+
+if(dateOnly(x.date)===today)
+he[new Date(x.date).getHours()]+=n(x.amount);
+
+});
+
+drawChart(
+'hourChart',
+'bar',
+Array.from(
+{length:24},
+(_,i)=>i+':00'
+),
+[
+{label:'Income',data:hd},
+{label:'Expense',data:he}
+]
+);
+
+
+/* DAILY TABLE */
+
+const rows=[];
+
+let days;
+
+if(reportPeriod==='day')
+days=1;
+else if(reportPeriod==='week')
+days=7;
+else if(reportPeriod==='month')
+days=new Date().getDate();
+else
+days=30;
+
+for(
+let i=days-1;
+i>=0;
+i--
+){
+
+const d=new Date();
+
+d.setDate(
+d.getDate()-i
+);
+
+d.setHours(
+0,0,0,0
+);
+
+const z=new Date(d);
+
+z.setHours(
+23,59,59,999
+);
+
+const k=dateOnly(d);
+
+const income=
+totals(
+state.incomes,
+d,
+z
+);
+
+const expense=
+totals(
+state.expenses,
+d,
+z
+);
+
+const profit=
+income-expense;
+
+const margin=
+income?
+profit/income*100:
+0;
+
+const produced=
+state.productions
+.filter(x=>dateOnly(x.date)===k)
+.reduce(
+(a,x)=>a+n(x.produced),
+0
+);
+
+const sold=
+state.sales
+.filter(x=>dateOnly(x.date)===k)
+.reduce(
+(a,x)=>a+n(x.pieces),
+0
+);
+
+rows.push({
+date:k,
+income,
+expense,
+profit,
+margin,
+produced,
+sold
+});
+
+}
+
+$('dailyReport').innerHTML=
+rows.reverse().map(r=>{
+
+const positive=r.profit>=0;
+
+return`
+<tr>
+
+<td>${r.date}</td>
+
+<td class="greenTxt">
+<b>${money(r.income)}</b>
+</td>
+
+<td class="redTxt">
+<b>${money(r.expense)}</b>
+</td>
+
+<td class="${positive?'greenTxt':'redTxt'}">
+<b>
+${positive?'🟢':'🔴'}
+${money(Math.abs(r.profit))}
+</b>
+</td>
+
+<td class="${positive?'greenTxt':'redTxt'}">
+${r.margin.toFixed(1)}%
+</td>
+
+<td>${r.produced}</td>
+
+<td>${r.sold}</td>
+
+</tr>
+`;
+
+}).join('');
+
+}
+
+
+/* PRODUCTION TABLE */
+
+function renderProduction(){
+
+const rows=[
+...state.productions
+].reverse();
+
+$('productionTable').innerHTML=
+rows.length?
+rows.map(x=>`
+
+<tr>
+
+<td>${esc(x.date)}</td>
+
+<td><b>${esc(x.name)}</b></td>
+
+<td>${esc(x.category)}</td>
+
+<td>${esc(x.fabric||'-')}</td>
+
+<td>${x.kg}</td>
+
+<td>${x.produced}</td>
+
+<td>${money(x.cost)}</td>
+
+<td>${money(x.sales)}</td>
+
+<td class="${x.profit<0?'redTxt':'greenTxt'}">
+${money(x.profit)}
+</td>
+
+<td>
+<button
+class="btn danger small"
+onclick="deleteProduction('${x.id}')">
+Delete
+</button>
+</td>
+
+</tr>
+
+`).join(''):
+'<tr><td colspan="10">Production የለም</td></tr>';
+
+}
+
+
+/* PRODUCTS */
+
+function openProductModal(){
+
+$('prodName').value='';
+$('prodCat').value='';
+$('prodPrice').value='';
+
+openModal('product');
+
+}
+
+function saveProduct(){
+
+const name=$('prodName').value.trim();
+const cat=$('prodCat').value.trim()||'Uncategorized';
+const price=n($('prodPrice').value);
+
+if(!name)
+return toast('Product name ያስገቡ');
+
+const old=
+state.products.find(
+x=>x.name.toLowerCase()===name.toLowerCase()
+);
+
+if(old){
+
+old.category=cat;
+
+if(price>0)
+old.price=price;
+
+}else{
+
+state.products.push({
+id:uid(),
+name,
+category:cat,
+price
+});
+
+}
+
+save();
+closeModal('product');
+renderAll();
+
+toast('Product ተቀምጧል');
+
+}
+
+
+/* CUSTOMERS */
+
+function openCustomerModal(){
+
+[
+'cusName',
+'cusPhone',
+'cusAddress'
+].forEach(id=>$(id).value='');
+
+openModal('customer');
+
+}
+
+function saveCustomer(){
+
+const name=$('cusName').value.trim();
+
+if(!name)
+return toast('Customer name ያስገቡ');
+
+state.customers.push({
+id:uid(),
+name,
+phone:$('cusPhone').value,
+address:$('cusAddress').value
+});
+
+save();
+closeModal('customer');
+renderAll();
+
+toast('Customer ተቀምጧል');
+
+}
+
+
+/* ORDERS */
+
+function openOrderModal(){
+
+$('ordCustomer').innerHTML=
+state.customers.map(c=>
+`<option value="${esc(c.id)}">
+${esc(c.name)}
+</option>`
+).join('')||
+'<option value="">No customer</option>';
+
+$('ordProduct').innerHTML=
+state.products.map(p=>
+`<option value="${esc(p.id)}">
+${esc(p.name)} — ${money(p.price)}
+</option>`
+).join('')||
+'<option value="">No product</option>';
+
+openModal('order');
+
+}
+
+function saveOrder(){
+
+const cid=$('ordCustomer').value;
+const pid=$('ordProduct').value;
+const q=n($('ordQty').value);
+
+const p=state.products.find(
+x=>x.id===pid
+);
+
+if(!cid||!pid||q<=0)
+return toast('Customer, Product, Quantity ያስገቡ');
+
+state.orders.push({
+id:uid(),
+date:new Date().toISOString(),
+customerId:cid,
+productId:pid,
+qty:q,
+total:q*n(p.price),
+status:$('ordStatus').value
+});
+
+save();
+closeModal('order');
+renderAll();
+
+toast('Order ተቀምጧል');
+
+}
+
+
+/* SUPPLIERS */
+
+function openSupplierModal(){
+
+[
+'supName',
+'supPhone',
+'supMaterial',
+'supAddress'
+].forEach(id=>$(id).value='');
+
+openModal('supplier');
+
+}
+
+function saveSupplier(){
+
+const name=$('supName').value.trim();
+
+if(!name)
+return toast('Supplier name ያስገቡ');
+
+state.suppliers.push({
+id:uid(),
+name,
+phone:$('supPhone').value,
+material:$('supMaterial').value,
+address:$('supAddress').value
+});
+
+save();
+closeModal('supplier');
+renderAll();
+
+toast('Supplier ተቀምጧል');
+
+}
+
+
+/* EMPLOYEE */
+
+function openEmployeeModal(){
+
+[
+'empName',
+'empRole',
+'empPhone',
+'empSalary'
+].forEach(id=>$(id).value='');
+
+openModal('employee');
+
+}
+
+function saveEmployee(){
+
+const name=$('empName').value.trim();
+
+if(!name)
+return toast('Employee name ያስገቡ');
+
+state.employees.push({
+id:uid(),
+name,
+role:$('empRole').value,
+phone:$('empPhone').value,
+salary:n($('empSalary').value)
+});
+
+save();
+closeModal('employee');
+renderAll();
+
+toast('Employee ተቀምጧል');
+
+}
+
+
+/* RENDER TABLES */
+
+function renderIncome(){
+
+const rows=
+state.incomes
+.filter(x=>x.category!=='sales')
+.slice()
+.reverse();
+
+$('incomeTable').innerHTML=
+rows.length?
+rows.map(x=>`
+
+<tr>
+
+<td>${fmt(x.date)}</td>
+
+<td>${esc(x.desc)}</td>
+
+<td>
+<span class="badge blue">
+${esc(x.category)}
+</span>
+</td>
+
+<td class="greenTxt">
+${money(x.amount)}
+</td>
+
+<td>
+<button
+class="btn danger small"
+onclick="deleteRecord('incomes','${x.id}')">
+Delete
+</button>
+</td>
+
+</tr>
+
+`).join(''):
+'<tr><td colspan="5">Other income የለም</td></tr>';
+
+}
+
+function renderExpenses(){
+
+const q=
+($('expenseSearch')?.value||'')
+.toLowerCase();
+
+const f=
+$('expenseFilter')?.value||'';
+
+const rows=
+state.expenses.filter(x=>
+(!q||
+(x.desc+' '+x.category)
+.toLowerCase()
+.includes(q))&&
+(!f||x.category===f)
+).slice().reverse();
+
+$('expenseTable').innerHTML=
+rows.length?
+rows.map(x=>`
+
+<tr>
+
+<td>${fmt(x.date)}</td>
+
+<td>${esc(x.desc)}</td>
+
+<td>
+<span class="badge orange">
+${esc(x.category)}
+</span>
+</td>
+
+<td class="redTxt">
+${money(x.amount)}
+</td>
+
+<td>
+<button
+class="btn danger small"
+onclick="deleteRecord('expenses','${x.id}')">
+Delete
+</button>
+</td>
+
+</tr>
+
+`).join(''):
+'<tr><td colspan="5">ወጪ የለም</td></tr>';
+
+}
+
+function renderSales(){
+
+const rows=
+[...state.sales].reverse();
+
+$('salesTable').innerHTML=
+rows.length?
+rows.map(x=>{
+
+const c=
+state.customers.find(
+c=>c.id===x.customerId
+);
+
+return`
+
+<tr>
+
+<td>${fmt(x.date)}</td>
+
+<td><b>${esc(x.productName)}</b></td>
+
+<td>${esc(c?.name||'Walk-in')}</td>
+
+<td>${x.qty} ${unitLabel(x.unit)}</td>
+
+<td>${x.pieces}</td>
+
+<td>${money(x.unitPrice)}</td>
+
+<td class="greenTxt">
+${money(x.total)}
+</td>
+
+<td>
+<button
+class="btn danger small"
+onclick="deleteRecord('sales','${x.id}')">
+Delete
+</button>
+</td>
+
+</tr>
+
+`;
+
+}).join(''):
+'<tr><td colspan="8">Sales የለም</td></tr>';
+
+}
+
+function renderProducts(){
+
+$('productsTable').innerHTML=
+state.products.length?
+state.products.map(p=>`
+
+<tr>
+
+<td><b>${esc(p.name)}</b></td>
+
+<td>${esc(p.category)}</td>
+
+<td>${money(p.price)}</td>
+
+<td>
+<b>${stockAvailableForProduct(p.name).toLocaleString()} Piece</b>
+</td>
+
+<td>
+
+<button
+class="btn danger small"
+onclick="deleteRecord('products','${p.id}')">
+Delete
+</button>
+
+</td>
+
+</tr>
+
+`).join(''):
+'<tr><td colspan="5">Product የለም</td></tr>';
+
+}
+
+function renderCustomers(){
+
+$('customersTable').innerHTML=
+state.customers.length?
+state.customers.map(c=>`
+
+<tr>
+
+<td><b>${esc(c.name)}</b></td>
+
+<td>${esc(c.phone)}</td>
+
+<td>${esc(c.address)}</td>
+
+<td>
+${state.orders.filter(
+o=>o.customerId===c.id
+).length}
+</td>
+
+<td>
+<button
+class="btn danger small"
+onclick="deleteRecord('customers','${c.id}')">
+Delete
+</button>
+</td>
+
+</tr>
+
+`).join(''):
+'<tr><td colspan="5">Customer የለም</td></tr>';
+
+}
+
+function renderOrders(){
+
+$('ordersTable').innerHTML=
+state.orders.length?
+state.orders.slice().reverse().map(o=>{
+
+const c=
+state.customers.find(
+x=>x.id===o.customerId
+);
+
+const p=
+state.products.find(
+x=>x.id===o.productId
+);
+
+return`
+
+<tr>
+
+<td>${fmt(o.date)}</td>
+
+<td>${esc(c?.name||'-')}</td>
+
+<td>${esc(p?.name||'-')}</td>
+
+<td>${o.qty}</td>
+
+<td>${money(o.total)}</td>
+
+<td>
+<span class="badge blue">
+${esc(o.status)}
+</span>
+</td>
+
+<td>
+<button
+class="btn danger small"
+onclick="deleteRecord('orders','${o.id}')">
+Delete
+</button>
+</td>
+
+</tr>
+
+`;
+
+}).join(''):
+'<tr><td colspan="7">Order የለም</td></tr>';
+
+}
+
+function renderSuppliers(){
+
+$('suppliersTable').innerHTML=
+state.suppliers.length?
+state.suppliers.map(s=>`
+
+<tr>
+
+<td>${esc(s.name)}</td>
+<td>${esc(s.phone)}</td>
+<td>${esc(s.material)}</td>
+<td>${esc(s.address)}</td>
+
+<td>
+<button
+class="btn danger small"
+onclick="deleteRecord('suppliers','${s.id}')">
+Delete
+</button>
+</td>
+
+</tr>
+
+`).join(''):
+'<tr><td colspan="5">Supplier የለም</td></tr>';
+
+}
+
+function renderEmployees(){
+
+$('employeesTable').innerHTML=
+state.employees.length?
+state.employees.map(e=>`
+
+<tr>
+
+<td>${esc(e.name)}</td>
+<td>${esc(e.role)}</td>
+<td>${esc(e.phone)}</td>
+<td>${money(e.salary)}</td>
+
+<td>
+<button
+class="btn danger small"
+onclick="deleteRecord('employees','${e.id}')">
+Delete
+</button>
+</td>
+
+</tr>
+
+`).join(''):
+'<tr><td colspan="5">Employee የለም</td></tr>';
+
+}
+
+
+/* STOCK RENDER */
+
+function renderStock(){
+
+const q=
+($('stockSearch')?.value||'')
+.toLowerCase();
+
+const loc=
+$('stockLoc')?.value||'';
+
+const cat=
+$('stockCat')?.value||'';
+
+const unit=
+$('stockUnitFilter')?.value||'';
+
+const rows=
+state.stocks.filter(s=>
+
+(!q||
+(s.name+' '+s.color+' '+s.category)
+.toLowerCase()
+.includes(q))&&
+
+(!loc||s.location===loc)&&
+
+(!cat||s.category===cat)&&
+
+(!unit||s.unit===unit)
+
+);
+
+$('stockTable').innerHTML=
+rows.length?
+rows.map(s=>{
+
+const b=balance(s);
+const low=isLow(s);
+
+return`
+
+<tr>
+
+<td>
+${s.location==='factory'?
+'🏭 Factory':
+'🏬 Warehouse'}
+</td>
+
+<td>${esc(s.category)}</td>
+
+<td><b>${esc(s.name)}</b></td>
+
+<td>${esc(s.color||'-')}</td>
+
+<td>${esc(s.size||'N/A')}</td>
+
+<td><b>${unitLabel(s.unit)}</b></td>
+
+<td>${n(s.opening)}</td>
+
+<td>${n(s.in)}</td>
+
+<td>${n(s.out)}</td>
+
+<td><b>${b}</b></td>
+
+<td>${n(s.min)}</td>
+
+<td>
+${low?
+'<span class="badge low">⚠️ LOW</span>':
+'<span class="badge ok">✓ OK</span>'}
+</td>
+
+<td class="action">
+
+<button
+class="btn light small"
+onclick="quickStockOut('${s.id}')">
+− OUT
+</button>
+
+<button
+class="btn success small"
+onclick="quickStockIn('${s.id}')">
+＋ IN
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+}).join(''):
+'<tr><td colspan="13">Stock አልተመዘገበም</td></tr>';
+
+$('factoryPieces').textContent=
+state.stocks
+.filter(s=>
+s.location==='factory'&&
+s.category==='finished'&&
+s.unit==='piece'
+)
+.reduce((a,s)=>a+balance(s),0)
+.toLocaleString();
+
+$('warehousePieces').textContent=
+state.stocks
+.filter(s=>
+s.location==='warehouse'&&
+s.category==='finished'&&
+s.unit==='piece'
+)
+.reduce((a,s)=>a+balance(s),0)
+.toLocaleString();
+
+$('fabricSummary').textContent=
+state.stocks
+.filter(s=>s.category==='fabric'&&s.unit==='kg')
+.reduce((a,s)=>a+balance(s),0)
+.toLocaleString()+' KG';
+
+$('lowCount').textContent=
+state.stocks.filter(isLow).length;
+
+$('stockAlert').innerHTML=
+stockAlertHtml();
+
+}
+
+function quickStockOut(id){
+
+const s=state.stocks.find(
+x=>x.id===id
+);
+
+const q=Number(
+prompt(
+'OUT '+s.name+
+' — '+unitLabel(s.unit)+
+' መጠን:',
+'1'
+)
+);
+
+if(!q||q<=0)
+return;
+
+if(q>balance(s))
+return toast('በቂ Stock የለም');
+
+s.out+=q;
+
+save();
+renderAll();
+
+toast('Stock ቀንሷል');
+
+}
+
+function quickStockIn(id){
+
+const s=state.stocks.find(
+x=>x.id===id
+);
+
+const q=Number(
+prompt(
+'IN '+s.name+
+' — '+unitLabel(s.unit)+
+' መጠን:',
+'1'
+)
+);
+
+if(!q||q<=0)
+return;
+
+s.in+=q;
+
+save();
+renderAll();
+
+toast('Stock ጨምሯል');
+
+}
+
+function stockAlertHtml(){
+
+const low=
+state.stocks.filter(isLow);
+
+if(!low.length)
+return`
+
+<div class="alert okA">
+<b>✓ Stock Status OK</b>
+<span>Low-stock warning የለም።</span>
+</div>
+
+`;
+
+return`
+
+<div class="alert warnA">
+
+<div>
+
+<b>⚠️ Low Stock Warning</b>
+
+<div class="chips">
+
+${low.map(s=>
+`<span class="chip">
+${esc(s.name)}:
+${balance(s)}
+${unitLabel(s.unit)}
+</span>`
+).join('')}
+
+</div>
+
+</div>
+
+<button
+class="btn warn small"
+onclick="showPageByName('stock')">
+View Stock
+</button>
+
+</div>
+
+`;
+
+}
+
+
+/* DELETE */
+
+function deleteRecord(arr,id){
+
+if(!confirm('ይህን መረጃ ማጥፋት ይፈልጋሉ?'))
+return;
+
+state[arr]=state[arr].filter(
+x=>x.id!==id
+);
+
+save();
+renderAll();
+
+toast('ተሰርዟል');
+
+}
+
+
+/* SETTINGS */
+
+function saveSettings(){
+
+state.settings={
+businessName:
+$('businessName').value.trim()||
+'Garment Manager',
+
+ownerName:
+$('ownerName').value.trim()||
+'Garment Owner',
+
+phone:
+$('businessPhone').value,
+
+address:
+$('businessAddress').value,
+
+currency:
+$('currency').value.trim()||
+'ETB'
+};
+
+save();
+renderAll();
+
+toast('Settings ተቀምጧል');
+
+}
+
+function loadSettings(){
+
+const s=state.settings;
+
+$('businessName').value=s.businessName;
+$('ownerName').value=s.ownerName;
+$('businessPhone').value=s.phone;
+$('businessAddress').value=s.address;
+$('currency').value=s.currency;
+
+$('topOwner').textContent=
+s.ownerName;
+
+$('welcomeName').textContent=
+s.ownerName;
+
+$('topAvatar').textContent=
+(s.ownerName||'G')
+.charAt(0)
+.toUpperCase();
+
+}
+
+
+/* BACKUP */
+
+function backupData(){
+
+const blob=new Blob(
+[
+JSON.stringify(
+state,
+null,
+2
+)
+],
+{
+type:'application/json'
+}
+);
+
+const a=document.createElement('a');
+
+a.href=
+URL.createObjectURL(blob);
+
+a.download=
+'garment-manager-backup-'+
+dateOnly(new Date())+
+'.json';
+
+a.click();
+
+setTimeout(
+()=>URL.revokeObjectURL(a.href),
+500
+);
+
+toast('Backup ተዘጋጅቷል');
+
+}
+
+function restoreData(e){
+
+const f=e.target.files[0];
+
+if(!f)
+return;
+
+const r=new FileReader();
+
+r.onload=()=>{
+
+try{
+
+const x=
+JSON.parse(r.result);
+
+if(
+!x.settings||
+!Array.isArray(x.stocks)
+)
+throw Error();
+
+if(
+confirm(
+'Current data በBackup ይተካ?'
+)
+){
+
+state={
+...base,
+...x,
+settings:{
+...base.settings,
+...x.settings
+}
+};
+
+save();
+renderAll();
+
+toast('Backup restored');
+
+}
+
+}catch{
+
+toast('Invalid backup file');
+
+}
+
+e.target.value='';
+
+};
+
+r.readAsText(f);
+
+}
+
+
+/* CLEAR */
+
+function clearAll(){
+
+if(!confirm(
+'ሁሉንም መረጃ ማጥፋት እርግጠኛ ነዎት?'
+))
+return;
+
+const settings=
+state.settings;
+
+state={
+...structuredClone(base),
+settings
+};
+
+save();
+renderAll();
+
+toast('ሁሉም መረጃ ተሰርዟል');
+
+}
+
+
+/* PRINT REPORT */
+
+function printReport(){
+
+const w=window.open(
+'',
+'_blank'
+);
+
+if(!w)
+return;
+
+const profit=
+$('repProfit').textContent;
+
+const status=
+$('resultStatusText').textContent;
+
+w.document.write(`
+
+<html>
+
+<head>
+
+<title>
+Garment Business Report
+</title>
+
+<style>
+
+body{
+font-family:Arial,sans-serif;
+padding:30px;
+color:#102033
+}
+
+h1{
+margin-bottom:3px
+}
+
+.summary{
+display:grid;
+grid-template-columns:
+repeat(4,1fr);
+gap:12px;
+margin:20px 0
+}
+
+.box{
+padding:15px;
+border:1px solid #ddd;
+border-radius:10px
+}
+
+.green{
+color:#15803d
+}
+
+.red{
+color:#b91c1c
+}
+
+table{
+border-collapse:collapse;
+width:100%;
+margin-top:20px
+}
+
+th,td{
+border:1px solid #ddd;
+padding:8px;
+text-align:left
+}
+
+th{
+background:#f1f5f9
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>
+${esc(state.settings.businessName)}
+</h1>
+
+<p>
+Business Performance Report —
+${reportPeriodName()}
+</p>
+
+<div class="summary">
+
+<div class="box">
+<b>Income</b>
+<br>
+<span class="green">
+${$('repIncome').textContent}
+</span>
+</div>
+
+<div class="box">
+<b>Expense</b>
+<br>
+<span class="red">
+${$('repExpense').textContent}
+</span>
+</div>
+
+<div class="box">
+<b>${status}</b>
+<br>
+<span class="${$('repProfit').className.includes('redTxt')?'red':'green'}">
+${profit}
+</span>
+</div>
+
+<div class="box">
+<b>Margin</b>
+<br>
+${$('reportMargin').textContent}
+</div>
+
+</div>
+
+${$('dailyReport').closest('table').outerHTML}
+
+</body>
+
+</html>
+
+`);
+
+w.document.close();
+w.print();
+
+}
+
+
+/* QUICK ADD */
+
+function openQuickAdd(){
+openModal('quick');
+}
+
+
+/* RENDER ALL */
+
+function renderAll(){
+
+loadSettings();
+
+$('currentDate').textContent=
+new Intl.DateTimeFormat(
+'en-GB',
+{
+dateStyle:'full',
+timeStyle:'short'
+}
+).format(new Date());
+
+renderDashboard();
+renderProduction();
+updateSaleOptions();
+
+$('saleDate').value=
+$('saleDate').value||
+nowLocal();
+
+renderSales();
+renderIncome();
+renderExpenses();
+renderStock();
+renderProducts();
+renderCustomers();
+renderOrders();
+renderSuppliers();
+renderEmployees();
+
+$('lowStockAlert').innerHTML=
+stockAlertHtml();
+
+renderReports();
+
+}
+
+
+/* INIT */
+
+if(
+localStorage.getItem('gm_dark')==='true'
+)
+document.body.classList.add('dark');
+
+$('pDate').value=
+dateOnly(new Date());
+
+$('saleDate').value=
+nowLocal();
+
+renderAll();
+
+window.addEventListener(
+'resize',
+()=>{
+renderDashboard();
+renderReports();
+}
+);
+
+</script>
+
+</body>
+</html>
